@@ -1,0 +1,19 @@
+mixin post(headline, markdownInclude)
+  article.post(id=markdownInclude)
+    header
+      h1.headline-primary= headline
+      
+      p.post-meta(title="2015/12/29")
+        span.post-category Frontend Architecture
+        |  • 
+        span.post-date December 2015
+        
+    .markdown-container
+      +#{markdownInclude}
+  
+      
+    footer.post-footer
+      nav.post-nav 
+        ul.scroll-status
+        
+  

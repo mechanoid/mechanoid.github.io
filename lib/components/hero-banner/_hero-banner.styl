@@ -1,0 +1,55 @@
+hero-banner-bg = pearl-black
+
+@keyframes pulse {
+    0% { transform: scale(1) }
+    50% { transform: scale(1.05) }
+    100% { transform: scale(1) }
+}
+
+.rlb .hero-banner
+  background-color hero-banner-bg
+
+  .hero-banner-message
+    padding 1rem
+
+    .headline-sub, .headline-primary
+      color pearl-white
+
+    .hero-banner-call2action
+      margin-top 2rem
+
+.no-js .rlb .hero-banner-page
+  display: flex;
+  flex-flow: column;
+
+  .hero-banner
+    order: -1;
+    margin-bottom 3rem
+
+.js .rlb .hero-banner
+    position fixed
+    top 0
+    right 0
+    bottom 0
+    left 0
+
+    .hero-banner-message
+      position absolute
+      left 0
+      bottom 15%
+
+
+.js .rlb
+  // inspired by http://www.smashingmagazine.com/2015/12/reimagining-single-page-applications-progressive-enhancement/#the-default-view
+  .hero-banner-page > *
+    display none
+
+  .hero-banner-page > *:last-child
+    display block
+
+  .hero-banner-page > *:target, .hero-banner-page > .selected-target
+    display block
+    animation: pulse 0.5s linear 1;
+
+  .hero-banner-page > *:target ~ *, .hero-banner-page > .selected-target ~ *
+    display none

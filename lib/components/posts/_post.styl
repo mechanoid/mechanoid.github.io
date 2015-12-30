@@ -1,0 +1,19 @@
+.post
+  margin-bottom 5rem
+  position relative
+  .markdown-container
+    & > h1, & > h2, & > h3
+      &:first-child + p::first-letter
+        font-size 3rem
+        float left
+        line-height 3rem
+        padding-right .5rem
+
+  .post-meta
+    ft-primary()
+    margin-top 0
+
+  .post-category, .post-date
+    text-transform uppercase
+    font-size .8rem
+    font-size 3vw

@@ -1,10 +1,14 @@
 hero-banner-bg = pearl-black
 
 @keyframes pulse {
-    0% { transform: scale(1) }
-    50% { transform: scale(1.05) }
-    100% { transform: scale(1) }
+    0% { transform: translateY(100%); position: fixed }
+    50% { transform: translateY(50%); }
+    100% { transform: translateY(0%);  position: static }
 }
+
+.rlb .hero-banner-content
+  background-color #fff
+  padding 1rem
 
 .rlb .hero-banner
   background-color hero-banner-bg
@@ -43,13 +47,18 @@ hero-banner-bg = pearl-black
   // inspired by http://www.smashingmagazine.com/2015/12/reimagining-single-page-applications-progressive-enhancement/#the-default-view
   .hero-banner-page > *
     display none
+    transform: translateY(0%);
 
   .hero-banner-page > *:last-child
+    transform: translateY(0%);
     display block
 
   .hero-banner-page > *:target, .hero-banner-page > .selected-target
     display block
-    animation: pulse 0.5s linear 1;
+    transform: translateY(0%);
+    animation: pulse 1s linear 1;
+
 
   .hero-banner-page > *:target ~ *, .hero-banner-page > .selected-target ~ *
-    display none
+    // display none
+    z-index -1

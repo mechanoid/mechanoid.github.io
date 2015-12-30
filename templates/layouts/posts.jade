@@ -4,9 +4,12 @@ extends ./frame.jade
 
 block body
   .hero-banner-page
-    main.rlb-content(id="rlb-main")
+    main.rlb-content.hero-banner-content(id="rlb-main")
       section.posts
         block content
+          
+      include footer.jade
+
     
     // BG image from https://unsplash.com/photos/8mqOw4DBBSg
     header.hero-banner(style="background-image: url(assets/images/artichokes.jpg)")

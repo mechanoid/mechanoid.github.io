@@ -4,9 +4,9 @@ mixin post(headline, markdownInclude)
       h1.headline-primary= headline
       
       p.post-meta(title="2015/12/29")
-        span.post-category Frontend Architecture
-        |  • 
+        span.post-category Frontend Architecture • 
         span.post-date December 2015
+        span.post-author by Falk Hoppe
         
     .markdown-container
       +#{markdownInclude}
@@ -15,5 +15,7 @@ mixin post(headline, markdownInclude)
     footer.post-footer
       nav.post-nav 
         ul.scroll-status
+      h3.headline-sub= headline
+  
         
   

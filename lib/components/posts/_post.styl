@@ -11,17 +11,44 @@
         line-height 3rem
         padding-right .5rem
 
-  .post-meta
-    ft-primary()
-    margin-top 0
-
-  .post-category, .post-date
-    text-transform uppercase
-    font-size .8rem
-    font-size 3vw
 
 
-.help-line
-  position absolute
-  color red
-  background-color red
+.post-meta
+  ft-primary()
+  margin-top 0
+
+.post-category, .post-date, .post-author
+  font-size .8rem
+  font-size 3.5vw
+
+.post-category, .post-date
+  text-transform uppercase
+
+.post-author
+  display block
+  line-height 1
+
+.post-footer
+  position fixed
+
+  top 100%
+  left 0
+  width 100%
+  background-color menu-bg
+  padding .5rem
+  z-index 10
+
+  .post:target &
+    bottom 0
+    top auto
+
+  .headline-sub
+    margin 0
+    padding 0
+    font-weight 700
+    width 100%
+    margin-top .5rem
+    line-height 1.3
+
+.post-nav
+  text-align center

@@ -7,7 +7,7 @@ hero-banner-bg = pearl-black
 }
 
 .rlb .hero-banner-content
-  background-color #fff
+  background-color main-bg
   padding 1rem
 
 .rlb .hero-banner
@@ -37,6 +37,8 @@ hero-banner-bg = pearl-black
     bottom 0
     left 0
 
+    z-index -1
+
     .hero-banner-message
       position absolute
       left 0
@@ -47,7 +49,7 @@ hero-banner-bg = pearl-black
   // inspired by http://www.smashingmagazine.com/2015/12/reimagining-single-page-applications-progressive-enhancement/#the-default-view
   .hero-banner-page > *
     display none
-    transform: translateY(0%);
+    transform: translateY(100%);
 
   .hero-banner-page > *:last-child
     transform: translateY(0%);
@@ -55,10 +57,9 @@ hero-banner-bg = pearl-black
 
   .hero-banner-page > *:target, .hero-banner-page > .selected-target
     display block
-    transform: translateY(0%);
-    animation: pulse 1s linear 1;
+    transform: none
+    animation: pulse .5s linear 1;
 
 
   .hero-banner-page > *:target ~ *, .hero-banner-page > .selected-target ~ *
     // display none
-    z-index -1

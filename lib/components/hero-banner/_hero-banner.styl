@@ -1,9 +1,8 @@
 hero-banner-bg = pearl-black
 
 @keyframes pulse {
-    0% { transform: translateY(100%); position: fixed }
-    50% { transform: translateY(50%); }
-    100% { transform: translateY(0%);  position: static }
+    0% { transform: translateX(-100%) }
+    100% { transform: translateX(0%) }
 }
 
 .rlb .hero-banner-content
@@ -48,20 +47,29 @@ hero-banner-bg = pearl-black
 
 
 .js .rlb
-  // inspired by http://www.smashingmagazine.com/2015/12/reimagining-single-page-applications-progressive-enhancement/#the-default-view
-  .hero-banner-page > *
-    display none
-    transform: translateY(100%);
+  // anchor-"navigation" with default fallback page inspired by
+  // http://www.smashingmagazine.com/2015/12/reimagining-single-page-applications-progressive-enhancement/#the-default-view
+  .hero-banner-page > *:first-child
+    // transform translateX(-100%)
+    transition right .5s
+    height 100%
+    width 100%
+
+    overflow-y scroll
+    -webkit-overflow-scrolling: touch;
+    position fixed
+
+    right 100%
+
+    z-index -2
 
   .hero-banner-page > *:last-child
-    transform: translateY(0%);
     display block
+    z-index 1
 
   .hero-banner-page > *:target, .hero-banner-page > .selected-target
-    display block
-    transform: none
-    animation: pulse .5s linear 1;
-
+    right 0
+    z-index 1
 
   .hero-banner-page > *:target ~ *, .hero-banner-page > .selected-target ~ *
-    // display none
+    z-index -1

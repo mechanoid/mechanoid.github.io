@@ -9,7 +9,16 @@ var stylus = require('gulp-stylus');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var plumber = require('gulp-plumber');
+var rev = require('gulp-rev');
+var clean = require('gulp-clean');
+var gulpSequence = require('gulp-sequence');
+var ghPages = require('gulp-gh-pages');
+var revReplace = require("gulp-rev-replace");
 
+gulp.task('clean', function () {
+	return gulp.src('./dist', {read: false})
+		.pipe(clean());
+});
 
 gulp.task('post-include-mixins', function(done) {
   fs.readdir('./templates/posts', function(err, files) {
@@ -32,9 +41,13 @@ gulp.task('post-include-mixins', function(done) {
 });
 
 gulp.task('templates', ['post-include-mixins'], function() {
+  var manifest = gulp.src('./dist/assets/rev-manifest.json');
+
+
   gulp.src('./templates/*.jade')
     .pipe(plumber())
     .pipe(jade({pretty: true}))
+    .pipe(revReplace({manifest: manifest}))
     .pipe(gulp.dest('./dist/'));
 });
 
@@ -44,12 +57,24 @@ gulp.task('images', function() {
 });
 
 gulp.task('scripts', function() {
-  gulp.src(['./lib/**/*.js'])
+  return gulp.src(['./lib/**/*.js'])
     .pipe(gulp.dest('./dist/assets/javascripts'));
 });
 
+
+
+gulp.task('asset-revisioning', ['scripts', 'styles'], function () {
+    // by default, gulp would pick `assets/css` as the base,
+    // so we need to set it explicitly:
+    return gulp.src(['./dist/assets/javascripts/*.js', './dist/assets/styles/*.css'], {base: 'dist/assets'})
+        .pipe(rev())
+        .pipe(gulp.dest('dist/assets'))  // write rev'd assets to build dir
+        .pipe(rev.manifest())
+        .pipe(gulp.dest('dist/assets')); // write manifest to build dir
+});
+
 gulp.task('styles', function () {
-  gulp.src('./lib/**/[^_]*.styl')
+  return gulp.src('./lib/**/[^_]*.styl')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(stylus())
@@ -61,10 +86,18 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('./dist/assets/styles'));
 });
 
-gulp.task('default', ['templates', 'assets', 'styles', 'scripts']);
 
-gulp.task('watch', ['templates', 'images', 'styles', 'scripts'], function() {
+gulp.task('build', gulpSequence('clean', 'asset-revisioning', 'templates', 'images'))
+
+gulp.task('default', ['build']);
+
+gulp.task('watch', ['build'], function() {
   gulp.watch(['./templates/**'], ['templates']);
   gulp.watch(['./assets/**'], ['images']);
   gulp.watch(['./lib/**'], ['styles', 'scripts']);
+});
+
+gulp.task('deploy', ['build'], function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
 });

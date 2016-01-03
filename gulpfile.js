@@ -14,6 +14,9 @@ var clean = require('gulp-clean');
 var gulpSequence = require('gulp-sequence');
 var ghPages = require('gulp-gh-pages');
 var revReplace = require("gulp-rev-replace");
+var concat = require("gulp-concat");
+var postIncludeBuilder = require('./tasks/post-include-builder.js')
+var postViewBuilder = require('./tasks/post-view-builder.js')
 
 gulp.task('clean', function () {
 	return gulp.src('./dist', {read: false})
@@ -21,30 +24,28 @@ gulp.task('clean', function () {
 });
 
 gulp.task('post-include-mixins', function(done) {
-  fs.readdir('./templates/posts', function(err, files) {
-    if (err !== null) {
-      throw(err);
-    }
-
-    var mixins = files.map(function(file) {
-      return "mixin " + path.basename(file, '.md') + "\n" + "  include:markdown-it ../posts/" + file;
-    });
-
-    fs.outputFile('templates/tmp/post_include_mixins.jade', mixins.join('\n\n'), function(err) {
-      if (err !== null) {
-        throw(err);
-      }
-
-      done();
-    });
-  });
+	return gulp.src('./posts/**/*.md')
+	.pipe(postIncludeBuilder())
+	.pipe(concat('post_include_mixins.jade'))
+	.pipe(gulp.dest('templates/tmp/'));
 });
 
-gulp.task('templates', ['post-include-mixins'], function() {
+gulp.task('article-pages', function(done) {
+	return gulp.src('./posts/**/*.md')
+	.pipe(postViewBuilder())
+	.pipe(gulp.dest('templates/posts/'));
+});
+
+gulp.task('prepare-post-templates', gulpSequence('post-include-mixins', 'article-pages'));
+
+gulp.task('templates', ['prepare-post-templates'], function() {
   var manifest = gulp.src('./dist/assets/rev-manifest.json');
 
 
-  return gulp.src('./templates/*.jade')
+  return gulp.src(['./templates/**/*.jade'
+		, '!./templates/tmp/**/*.jade'
+		, '!./templates/layouts/**/*.jade'
+		, '!./templates/helper/**/*.jade'])
     .pipe(plumber())
     .pipe(jade({pretty: true}))
     .pipe(revReplace({manifest: manifest}))

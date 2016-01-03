@@ -1,0 +1,11 @@
+include ../helper/post_helper.jade
+include ../tmp/post_include_mixins.jade
+extends ./frame.jade
+
+block body
+  
+  main.rlb-content
+    section.post
+      block content
+        
+    include footer.jade

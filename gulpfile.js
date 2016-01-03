@@ -44,7 +44,7 @@ gulp.task('templates', ['post-include-mixins'], function() {
   var manifest = gulp.src('./dist/assets/rev-manifest.json');
 
 
-  gulp.src('./templates/*.jade')
+  return gulp.src('./templates/*.jade')
     .pipe(plumber())
     .pipe(jade({pretty: true}))
     .pipe(revReplace({manifest: manifest}))
@@ -52,7 +52,7 @@ gulp.task('templates', ['post-include-mixins'], function() {
 });
 
 gulp.task('images', function() {
-  gulp.src(['./assets/images/**/*'])
+  return gulp.src(['./assets/images/**/*'])
     .pipe(gulp.dest('./dist/assets/images'));
 });
 

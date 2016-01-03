@@ -1,10 +1,5 @@
 hero-banner-bg = pearl-black
 
-@keyframes pulse {
-    0% { transform: translateX(-100%) }
-    100% { transform: translateX(0%) }
-}
-
 .rlb .hero-banner-content
   background-color main-bg
   padding 1rem
@@ -50,26 +45,13 @@ hero-banner-bg = pearl-black
   // anchor-"navigation" with default fallback page inspired by
   // http://www.smashingmagazine.com/2015/12/reimagining-single-page-applications-progressive-enhancement/#the-default-view
   .hero-banner-page > *:first-child
-    // transform translateX(-100%)
-    transition right .5s
-    height 100%
-    width 100%
-
-    overflow-y scroll
-    -webkit-overflow-scrolling: touch;
-    position fixed
-
-    right 100%
-
-    z-index -2
+    display none
 
   .hero-banner-page > *:last-child
     display block
-    z-index 1
 
   .hero-banner-page > *:target, .hero-banner-page > .selected-target
-    right 0
-    z-index 1
+    display block
 
   .hero-banner-page > *:target ~ *, .hero-banner-page > .selected-target ~ *
-    z-index -1
+    display none

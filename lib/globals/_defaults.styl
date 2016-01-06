@@ -4,9 +4,17 @@
 *
   box-sizing border-box
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+// low res mobile font-size
+html
+  font-size 100%
+
++mq_hires()
   html
     font-size 250%
+
+mq_highres_desktop()
+  html
+    font-size 150%
 
 
 .rlb

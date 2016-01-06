@@ -18,6 +18,14 @@ var concat = require("gulp-concat");
 var postIncludeBuilder = require('./tasks/post-include-builder.js')
 var postViewBuilder = require('./tasks/post-view-builder.js')
 
+var templatePathsWithExcludes = ['./templates/**/*.jade'
+	, '!./templates/tmp/**/*.jade'
+	, '!./templates/layouts/**/*.jade'
+	, '!./templates/helper/**/*.jade'];
+
+var buildPaths = templatePathsWithExcludes.slice();
+buildPaths.push('./lib/**');
+
 gulp.task('clean', function () {
 	return gulp.src('./dist', {read: false})
 		.pipe(clean());
@@ -36,16 +44,15 @@ gulp.task('article-pages', function(done) {
 	.pipe(gulp.dest('templates/posts/'));
 });
 
-gulp.task('prepare-post-templates', gulpSequence('post-include-mixins', 'article-pages'));
+gulp.task('prepare-post-templates', function(cb) {
+	gulpSequence('post-include-mixins', 'article-pages')(cb);
+});
 
 gulp.task('templates', ['prepare-post-templates'], function() {
   var manifest = gulp.src('./dist/assets/rev-manifest.json');
 
 
-  return gulp.src(['./templates/**/*.jade'
-		, '!./templates/tmp/**/*.jade'
-		, '!./templates/layouts/**/*.jade'
-		, '!./templates/helper/**/*.jade'])
+  return gulp.src(templatePathsWithExcludes)
     .pipe(plumber())
     .pipe(jade({pretty: true}))
     .pipe(revReplace({manifest: manifest}))
@@ -57,6 +64,14 @@ gulp.task('images', function() {
     .pipe(gulp.dest('./dist/assets/images'));
 });
 
+gulp.task('vendor-resources', function() {
+  return gulp.src([
+		'./node_modules/jquery/dist/jquery.js',
+		'./node_modules/hammerjs/hammer.js'
+	])
+    .pipe(gulp.dest('./dist/assets/vendor'));
+});
+
 gulp.task('scripts', function() {
   return gulp.src(['./lib/**/*.js'])
     .pipe(gulp.dest('./dist/assets/javascripts'));
@@ -64,7 +79,7 @@ gulp.task('scripts', function() {
 
 
 
-gulp.task('asset-revisioning', ['scripts', 'styles'], function () {
+gulp.task('asset-revisioning', ['styles', 'scripts'], function () {
     // by default, gulp would pick `assets/css` as the base,
     // so we need to set it explicitly:
     return gulp.src(['./dist/assets/javascripts/*.js', './dist/assets/styles/*.css'], {base: 'dist/assets'})
@@ -87,15 +102,14 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('./dist/assets/styles'));
 });
 
-
-gulp.task('build', gulpSequence('clean', 'asset-revisioning', 'templates', 'images'))
+gulp.task('build', function(cb) {
+	gulpSequence('clean', 'asset-revisioning', 'templates', 'images', 'vendor-resources')(cb);
+})
 
 gulp.task('default', ['build']);
 
 gulp.task('watch', ['build'], function() {
-  gulp.watch(['./templates/**'], ['templates']);
-  gulp.watch(['./assets/**'], ['images']);
-  gulp.watch(['./lib/**'], ['styles', 'scripts']);
+  gulp.watch(buildPaths, ['build']);
 });
 
 gulp.task('deploy', ['build'], function() {

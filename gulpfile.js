@@ -26,8 +26,13 @@ var templatePathsWithExcludes = ['./templates/**/*.jade'
 var buildPaths = templatePathsWithExcludes.slice();
 buildPaths.push('./lib/**');
 
+var distFolder = 'blog'
+var distPath = './' + distFolder;
+var assetFolder = distFolder + '/assets';
+var assetPath = distPath + '/assets';
+
 gulp.task('clean', function () {
-	return gulp.src('./dist', {read: false})
+	return gulp.src(distPath, {read: false})
 		.pipe(clean());
 });
 
@@ -49,19 +54,18 @@ gulp.task('prepare-post-templates', function(cb) {
 });
 
 gulp.task('templates', ['prepare-post-templates'], function() {
-  var manifest = gulp.src('./dist/assets/rev-manifest.json');
-
+  var manifest = gulp.src(assetPath + '/rev-manifest.json');
 
   return gulp.src(templatePathsWithExcludes)
     .pipe(plumber())
     .pipe(jade({pretty: true}))
     .pipe(revReplace({manifest: manifest}))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest(distPath));
 });
 
 gulp.task('images', function() {
   return gulp.src(['./assets/images/**/*'])
-    .pipe(gulp.dest('./dist/assets/images'));
+    .pipe(gulp.dest(assetPath + '/images'));
 });
 
 gulp.task('vendor-resources', function() {
@@ -69,24 +73,20 @@ gulp.task('vendor-resources', function() {
 		'./node_modules/jquery/dist/jquery.js',
 		'./node_modules/hammerjs/hammer.js'
 	])
-    .pipe(gulp.dest('./dist/assets/vendor'));
+    .pipe(gulp.dest(assetPath + '/vendor'));
 });
 
 gulp.task('scripts', function() {
   return gulp.src(['./lib/**/*.js'])
-    .pipe(gulp.dest('./dist/assets/javascripts'));
+    .pipe(gulp.dest(assetPath + '/javascripts'));
 });
 
-
-
 gulp.task('asset-revisioning', ['styles', 'scripts'], function () {
-    // by default, gulp would pick `assets/css` as the base,
-    // so we need to set it explicitly:
-    return gulp.src(['./dist/assets/javascripts/*.js', './dist/assets/styles/*.css'], {base: 'dist/assets'})
-        .pipe(rev())
-        .pipe(gulp.dest('dist/assets'))  // write rev'd assets to build dir
-        .pipe(rev.manifest())
-        .pipe(gulp.dest('dist/assets')); // write manifest to build dir
+  return gulp.src([assetPath + '/javascripts/*.js', assetPath + '/styles/*.css'], {base: assetFolder})
+    .pipe(rev())
+    .pipe(gulp.dest(assetPath))  // write rev'd assets to build dir
+    .pipe(rev.manifest())
+    .pipe(gulp.dest(assetPath)); // write manifest to build dir
 });
 
 gulp.task('styles', function () {
@@ -99,7 +99,7 @@ gulp.task('styles', function () {
       cascade: false
     }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./dist/assets/styles'));
+    .pipe(gulp.dest(assetPath + '/styles'));
 });
 
 gulp.task('build', function(cb) {
@@ -113,6 +113,6 @@ gulp.task('watch', ['build'], function() {
 });
 
 gulp.task('deploy', ['build'], function() {
-  return gulp.src('./dist/**/*')
+  return gulp.src(distPath + '/**/*')
     .pipe(ghPages());
 });

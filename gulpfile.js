@@ -14,9 +14,17 @@ var clean = require('gulp-clean');
 var gulpSequence = require('gulp-sequence');
 var ghPages = require('gulp-gh-pages');
 var revReplace = require("gulp-rev-replace");
+var replace = require('gulp-replace');
 var concat = require("gulp-concat");
 var postIncludeBuilder = require('./tasks/post-include-builder.js')
 var postViewBuilder = require('./tasks/post-view-builder.js')
+
+
+var config = {
+	env: "development",
+	dist: "dist",
+	remoteDist: "/blog/"
+};
 
 var templatePathsWithExcludes = ['./templates/**/*.jade'
 	, '!./templates/tmp/**/*.jade'
@@ -26,10 +34,11 @@ var templatePathsWithExcludes = ['./templates/**/*.jade'
 var buildPaths = templatePathsWithExcludes.slice();
 buildPaths.push('./lib/**');
 
-var distFolder = 'blog'
+var distFolder = config.dist;
 var distPath = './' + distFolder;
 var assetFolder = distFolder + '/assets';
 var assetPath = distPath + '/assets';
+
 
 gulp.task('clean', function () {
 	return gulp.src(distPath, {read: false})
@@ -56,11 +65,17 @@ gulp.task('prepare-post-templates', function(cb) {
 gulp.task('templates', ['prepare-post-templates'], function() {
   var manifest = gulp.src(assetPath + '/rev-manifest.json');
 
-  return gulp.src(templatePathsWithExcludes)
+  var t =  gulp.src(templatePathsWithExcludes)
     .pipe(plumber())
     .pipe(jade({pretty: true}))
     .pipe(revReplace({manifest: manifest}))
-    .pipe(gulp.dest(distPath));
+
+	if (config.env === 'production') {
+		t = t.pipe(replace(/(=["'])(\/)([^\/])/g, "$1" + config.remoteDist + "$3"));
+	}
+
+	return t
+		.pipe(gulp.dest(distPath));
 });
 
 gulp.task('images', function() {
@@ -102,8 +117,23 @@ gulp.task('styles', function () {
     .pipe(gulp.dest(assetPath + '/styles'));
 });
 
+gulp.task('enable-prod-env', function(cb) {
+	config.envbak = config.env;
+	config.env = 'production';
+	cb();
+});
+
+gulp.task('disable-prod-env', function(cb) {
+	config.env = config.envbak;
+	cb();
+});
+
 gulp.task('build', function(cb) {
 	gulpSequence('clean', 'asset-revisioning', 'templates', 'images', 'vendor-resources')(cb);
+})
+
+gulp.task('build-release', function(cb) {
+	gulpSequence('clean', 'asset-revisioning', 'enable-prod-env', 'templates', 'disable-prod-env', 'images', 'vendor-resources')(cb);
 })
 
 gulp.task('default', ['build']);
@@ -112,7 +142,7 @@ gulp.task('watch', ['build'], function() {
   gulp.watch(buildPaths, ['build']);
 });
 
-gulp.task('deploy', ['build'], function() {
+gulp.task('deploy', ['build-release'], function() {
   return gulp.src(distPath + '/**/*')
     .pipe(ghPages());
 });

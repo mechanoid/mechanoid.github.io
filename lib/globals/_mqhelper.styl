@@ -1,17 +1,5 @@
-mq_highres()
-  @media
-  (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 2dppx),
-  (-webkit-min-device-pixel-ratio: 3),
-  (min-resolution: 3dppx)
-    {block}
-
-mq_highres_desktop()
-  @media
-  (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 2dppx),
-  (-webkit-min-device-pixel-ratio: 3) and (min-device-width: 667px),
-  (min-resolution: 192dpi) and (min-device-width: 667px)
+desktop()
+  @media only screen and (min-width: 768px)
     {block}
 
 // mq_desktop_lowres()

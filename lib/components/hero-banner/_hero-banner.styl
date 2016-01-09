@@ -9,6 +9,10 @@ hero-banner-bg = pearl-black
   background-repeat no-repeat
   background-size cover
 
+  +desktop()
+    &
+      text-align center
+
   .hero-banner-message
     padding 1rem
 
@@ -17,6 +21,10 @@ hero-banner-bg = pearl-black
 
     .hero-banner-call2action
       margin-top 2rem
+      +desktop()
+        &
+          display inline-block
+          padding .8rem 4rem
 
 .no-js .rlb .hero-banner-page
   display: flex;

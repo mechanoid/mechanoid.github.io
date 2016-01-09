@@ -41,7 +41,7 @@ var assetPath = distPath + '/assets';
 
 
 gulp.task('clean', function () {
-	return gulp.src(distPath, {read: false})
+	return gulp.src([distPath, 'templates/tmp', 'templates/posts'], {read: false})
 		.pipe(clean());
 });
 

@@ -29,8 +29,7 @@ var config = {
 
 var templatePathsWithExcludes = ['./templates/**/*.jade'
 	, '!./templates/tmp/**/*.jade'
-	, '!./templates/layouts/**/*.jade'
-	, '!./templates/helper/**/*.jade'];
+	, '!./templates/posts/**/*.jade'];
 
 var buildPaths = templatePathsWithExcludes.slice();
 buildPaths.push('./lib/**');

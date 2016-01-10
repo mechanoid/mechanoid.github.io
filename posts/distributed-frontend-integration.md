@@ -1,4 +1,6 @@
-
+---
+title: The realms of distributed frontend integration
+---
 
 ## *tl;dr*
 

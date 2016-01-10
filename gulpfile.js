@@ -16,8 +16,9 @@ var ghPages = require('gulp-gh-pages');
 var revReplace = require("gulp-rev-replace");
 var replace = require('gulp-replace');
 var concat = require("gulp-concat");
-var postIncludeBuilder = require('./tasks/post-include-builder.js')
-var postViewBuilder = require('./tasks/post-view-builder.js')
+var postIncludeBuilder = require('./tasks/post-include-builder.js');
+var postViewBuilder = require('./tasks/post-view-builder.js');
+var frontMatter = require('gulp-front-matter');
 
 
 var config = {
@@ -47,6 +48,10 @@ gulp.task('clean', function () {
 
 gulp.task('post-include-mixins', function(done) {
 	return gulp.src('./posts/**/*.md')
+	.pipe(frontMatter({
+		property: 'frontMatter',
+		remove: true
+	}))
 	.pipe(postIncludeBuilder())
 	.pipe(concat('post_include_mixins.jade'))
 	.pipe(gulp.dest('templates/tmp/'));
@@ -54,6 +59,10 @@ gulp.task('post-include-mixins', function(done) {
 
 gulp.task('article-pages', function(done) {
 	return gulp.src('./posts/**/*.md')
+	.pipe(frontMatter({
+		property: 'frontMatter',
+		remove: true
+	}))
 	.pipe(postViewBuilder())
 	.pipe(gulp.dest('templates/posts/'));
 });

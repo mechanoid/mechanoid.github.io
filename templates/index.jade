@@ -1,6 +1,7 @@
 extends ./layouts/posts.jade
 
 block content
-  +post("The realms of distributed frontend integration", "distributed-frontend-integration")
-  
-  +post("Progressive Enhancement is not cure to JS exceptions", "pe-exception-immunity")
+  +article-data
+    each post, id in ctx
+      +post(post.title, id)
+      

@@ -21,7 +21,7 @@ module.exports = function(opts) {
     var template = "extends ../layouts/post.jade\n" +
       "block content\n" +
       // TODO: front matter for the title
-      '  +post("The realms of distributed frontend integration", "'+path.basename(file.path, '.md')+'")\n';
+      '  +post("' + file.frontMatter.title + '", "'+path.basename(file.path, '.md')+'")\n';
 
     file.contents = new Buffer(template);
     file.basename = path.basename(file.path, '.md') + ".jade";

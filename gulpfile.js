@@ -134,7 +134,7 @@ gulp.task('disable-prod-env', function(cb) {
 });
 
 gulp.task('build', function(cb) {
-	gulpSequence('clean', 'post-include-mixins', 'asset-revisioning', 'templates', 'images', 'vendor-resources')(cb);
+	return gulpSequence('clean', 'post-include-mixins', 'asset-revisioning', 'templates', 'images', 'vendor-resources')(cb);
 })
 
 gulp.task('build-release', function(cb) {

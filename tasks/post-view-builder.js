@@ -18,10 +18,10 @@ module.exports = function(opts) {
       return callback();
     }
 
-    var template = "extends ../layouts/post.jade\n" +
-      "block content\n" +
-      // TODO: front matter for the title
-      '  +post("' + file.frontMatter.title + '", "'+path.basename(file.path, '.md')+'")\n';
+    var template = "extends ../../templates/layouts/post.jade\n"
+      + "block content\n"
+      + '  - post = ' + JSON.stringify(file.frontMatter) + '\n'
+      + '  +post(post, "'+path.basename(file.path, '.md')+'", true)\n';
 
     file.contents = new Buffer(template);
     file.basename = path.basename(file.path, '.md') + ".jade";

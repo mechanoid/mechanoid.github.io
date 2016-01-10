@@ -24,15 +24,22 @@ var frontMatter = require('gulp-front-matter');
 var config = {
 	env: "development",
 	dist: "dist",
-	remoteDist: "/blog/"
+	remoteDist: "/blog/",
+	host: 'http://127.0.0.1:8080'
 };
 
-var templatePathsWithExcludes = ['./templates/**/*.jade'
-	, '!./templates/tmp/**/*'
-	, '!./templates/posts/**/*'];
+var templatePathsWithExcludes = [
+	'!./templates/tmp/**/*'
+	, '!./templates/posts/**/*'
+	, '!./templates/helper/**/*'
+	, '!./templates/layouts/**/*'];
 
 var buildPaths = templatePathsWithExcludes.slice();
 buildPaths.push('./lib/**');
+
+var jadeFiles  = templatePathsWithExcludes.slice()
+jadeFiles.push('./templates/**/*.jade');
+jadeFiles.push('./tmp/posts/**/*.jade');
 
 var distFolder = config.dist;
 var distPath = './' + distFolder;
@@ -52,6 +59,7 @@ gulp.task('post-include-mixins', function(done) {
 		property: 'frontMatter',
 		remove: true
 	}))
+	.pipe(gulp.dest('./tmp/processed-posts'))
 	.pipe(postIncludeBuilder())
 	.pipe(concat('post_include_mixins.jade'))
 	.pipe(gulp.dest('./tmp'));
@@ -70,9 +78,9 @@ gulp.task('article-pages', function(done) {
 gulp.task('templates', ['article-pages'], function() {
   var manifest = gulp.src(assetPath + '/rev-manifest.json');
 
-  var t =  gulp.src(templatePathsWithExcludes)
+  var t =  gulp.src(jadeFiles)
     .pipe(plumber())
-    .pipe(jade({pretty: true, locals: { copyrightYear: new Date().getFullYear() }}))
+    .pipe(jade({pretty: true, locals: { host: config.host, copyrightYear: new Date().getFullYear() }}))
     .pipe(revReplace({manifest: manifest}))
 
 	if (config.env === 'production') {
@@ -97,7 +105,7 @@ gulp.task('vendor-resources', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src(['./lib/**/*.js'])
+  return gulp.src(['./lib/**/*.js', './node_modules/clipboard/dist/clipboard.js'])
     .pipe(gulp.dest(assetPath + '/javascripts'));
 });
 
@@ -125,11 +133,14 @@ gulp.task('styles', function () {
 gulp.task('enable-prod-env', function(cb) {
 	config.envbak = config.env;
 	config.env = 'production';
+	config.hostbak = config.host;
+	config.host = 'http://mechanoid.github.io/blog';
 	cb();
 });
 
 gulp.task('disable-prod-env', function(cb) {
 	config.env = config.envbak;
+	config.host = config.hostbak;
 	cb();
 });
 

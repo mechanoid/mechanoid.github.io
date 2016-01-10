@@ -20,7 +20,7 @@ module.exports = function(opts) {
       return callback();
     }
 
-    file.contents = new Buffer("mixin " + path.basename(file.path, '.md') + "\n" + "  include:markdown-it " + path.relative('./tmp', file.path));
+    file.contents = new Buffer("mixin " + path.basename(file.path, '.md') + "\n" + "  include:markdown-it " + path.relative('./processed-posts', file.path));
     files.push(file);
     this.push(file);
     callback();
@@ -33,7 +33,7 @@ module.exports = function(opts) {
         ctx[path.basename(file.path, '.md')] = file.frontMatter;
       }
     }
-    var dummy = new File({path: __dirname + "/tmp/post-mixins-data.jade"});
+    var dummy = new File({path: __dirname + "../post-mixins-data.jade"});
     dummy.contents = new Buffer("mixin article-data\n"
     + "  - ctx = " + JSON.stringify(ctx) + '\n'
     + "  if block" + '\n'

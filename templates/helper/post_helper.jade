@@ -1,24 +1,34 @@
-mixin post(headline, markdownInclude)
+mixin post(post, markdownInclude, isView)
+  - dateOptions = { weekday: "long", year: "numeric", month: "short" };
+  - formattedDate = new Date(post.date).toLocaleDateString("en-us", dateOptions);
+  - postPath = isView ? markdownInclude + ".html" : ""
+
   article.post(id=markdownInclude)
     header
-      a(href="/posts/#{markdownInclude}.html")
-        h1.headline-primary= headline
+      a(href="/#{markdownInclude}.html")
+        h1.headline-primary= post.title
       
-      p.post-meta(title="2015/12/29")
+      p.post-meta(title=post.title)
         span.post-category Frontend Architecture • 
-        span.post-date December 2015
+        span.post-date= formattedDate
         span.post-author by Falk Hoppe
         
+        
+    h2.headline-sub.post-tldr-headline #tl;dr
+    p.post-tldr= post.tldr
     .markdown-container
+      
       +#{markdownInclude}
       
     footer.post-footer
       nav.post-nav 
-        button.open.fa.fa-info
+        button.open.fa.fa-info(title="information")
         ul.scroll-status
+        a(class="clipboard" title="article link" data-clipboard-text="#{host}/#{postPath}##{markdownInclude}").copy-link.fa.fa-link
           
       .post-footer-content
-        h3.headline-sub= headline
+        h3.headline-sub= post.title
+        
   
         
   

@@ -3,5 +3,5 @@ extends ./layouts/posts.jade
 block content
   +article-data
     each post, id in ctx
-      +post(post.title, id)
+      +post(post, id)
       

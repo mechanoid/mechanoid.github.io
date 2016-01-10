@@ -72,7 +72,7 @@ gulp.task('templates', ['article-pages'], function() {
 
   var t =  gulp.src(templatePathsWithExcludes)
     .pipe(plumber())
-    .pipe(jade({pretty: true}))
+    .pipe(jade({pretty: true, locals: { copyrightYear: new Date().getFullYear() }}))
     .pipe(revReplace({manifest: manifest}))
 
 	if (config.env === 'production') {

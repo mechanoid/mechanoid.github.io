@@ -1,5 +1,4 @@
 node_modules
 stock
 dist
-templates/tmp
-templates/posts
+tmp

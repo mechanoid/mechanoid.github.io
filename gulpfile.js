@@ -28,8 +28,8 @@ var config = {
 };
 
 var templatePathsWithExcludes = ['./templates/**/*.jade'
-	, '!./templates/tmp/**/*.jade'
-	, '!./templates/posts/**/*.jade'];
+	, '!./templates/tmp/**/*'
+	, '!./templates/posts/**/*'];
 
 var buildPaths = templatePathsWithExcludes.slice();
 buildPaths.push('./lib/**');
@@ -41,7 +41,8 @@ var assetPath = distPath + '/assets';
 
 
 gulp.task('clean', function () {
-	return gulp.src([distPath, 'templates/tmp', 'templates/posts'], {read: false})
+	return gulp.src([distPath, 'tmp'], {read: false})
+		.pipe(plumber())
 		.pipe(clean());
 });
 
@@ -53,7 +54,7 @@ gulp.task('post-include-mixins', function(done) {
 	}))
 	.pipe(postIncludeBuilder())
 	.pipe(concat('post_include_mixins.jade'))
-	.pipe(gulp.dest('templates/tmp/'));
+	.pipe(gulp.dest('./tmp'));
 });
 
 gulp.task('article-pages', function(done) {
@@ -63,14 +64,10 @@ gulp.task('article-pages', function(done) {
 		remove: true
 	}))
 	.pipe(postViewBuilder())
-	.pipe(gulp.dest('templates/posts/'));
+	.pipe(gulp.dest('./tmp/posts'));
 });
 
-gulp.task('prepare-post-templates', function(cb) {
-	gulpSequence('post-include-mixins', 'article-pages')(cb);
-});
-
-gulp.task('templates', ['prepare-post-templates'], function() {
+gulp.task('templates', ['article-pages'], function() {
   var manifest = gulp.src(assetPath + '/rev-manifest.json');
 
   var t =  gulp.src(templatePathsWithExcludes)
@@ -137,11 +134,11 @@ gulp.task('disable-prod-env', function(cb) {
 });
 
 gulp.task('build', function(cb) {
-	gulpSequence('clean', 'asset-revisioning', 'templates', 'images', 'vendor-resources')(cb);
+	gulpSequence('clean', 'post-include-mixins', 'asset-revisioning', 'templates', 'images', 'vendor-resources')(cb);
 })
 
 gulp.task('build-release', function(cb) {
-	gulpSequence('clean', 'asset-revisioning', 'enable-prod-env', 'templates', 'disable-prod-env', 'images', 'vendor-resources')(cb);
+	return gulpSequence('clean', 'post-include-mixins', 'asset-revisioning', 'enable-prod-env', 'templates', 'disable-prod-env', 'images', 'vendor-resources')(cb);
 })
 
 gulp.task('default', ['build']);

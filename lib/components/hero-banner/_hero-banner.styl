@@ -7,6 +7,7 @@ hero-banner-bg = pearl-black
   background-color hero-banner-bg
   background-repeat no-repeat
   background-size cover
+  background-position center center
 
   +desktop()
     &
@@ -45,7 +46,7 @@ hero-banner-bg = pearl-black
     .hero-banner-message
       position absolute
       left 0
-      bottom 15%
+      bottom 5%
 
 
 .js .rlb
@@ -59,6 +60,7 @@ hero-banner-bg = pearl-black
 
   .hero-banner-page > *:target, .hero-banner-page > .selected-target
     display block
+    animation: pulse 0.2s linear 1;
 
   .hero-banner-page > *:target ~ *, .hero-banner-page > .selected-target ~ *
     display none

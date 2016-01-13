@@ -1,0 +1,12 @@
+mixin main-nav
+  +article-data
+    nav.main.nav
+      button.nav-toggle.btn-primary.fa.fa-reorder
+      button.nav-close.fa.fa-remove
+         
+      ul.nav-list
+        li.nav-item.fa.fa-home
+          a.nav-link(href="/") Home
+        each post, id in ctx
+          li.nav-item.fa.fa-star
+            a.nav-link(href="/#{id}.html")= post.title

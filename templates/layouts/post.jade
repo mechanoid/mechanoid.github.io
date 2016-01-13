@@ -1,8 +1,11 @@
 include ../helper/post_helper.jade
 include ../../tmp/post_include_mixins.jade
+include ../helper/nav.jade
 extends ./frame.jade
 
 block body
+  +main-nav()
+  
   main.rlb-content
     section.post-view
       block content

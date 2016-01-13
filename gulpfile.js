@@ -35,7 +35,10 @@ var templatePathsWithExcludes = [
 	, '!./templates/layouts/**/*'];
 
 var buildPaths = templatePathsWithExcludes.slice();
-buildPaths.push('./lib/**');
+buildPaths.push('./lib/*');
+
+var watchPaths = templatePathsWithExcludes.slice();
+watchPaths.push('./lib/**/*');
 
 var jadeFiles  = templatePathsWithExcludes.slice()
 jadeFiles.push('./templates/**/*.jade');
@@ -118,7 +121,7 @@ gulp.task('asset-revisioning', ['styles', 'scripts'], function () {
 });
 
 gulp.task('styles', function () {
-  return gulp.src('./lib/**/[^_]*.styl')
+  return gulp.src('./lib/*.styl')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(stylus())
@@ -155,7 +158,7 @@ gulp.task('build-release', function(cb) {
 gulp.task('default', ['build']);
 
 gulp.task('watch', ['build'], function() {
-  gulp.watch(buildPaths, ['build']);
+  gulp.watch(watchPaths, ['build']);
 });
 
 gulp.task('deploy', ['build-release'], function() {

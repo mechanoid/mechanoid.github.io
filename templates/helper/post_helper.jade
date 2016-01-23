@@ -1,9 +1,10 @@
-mixin post(post, markdownInclude, isView)
+mixin post(post, markdownInclude, isView, active)
   - dateOptions = { weekday: "long", year: "numeric", month: "short" };
   - formattedDate = new Date(post.date).toLocaleDateString("en-us", dateOptions);
   - postPath = isView ? markdownInclude + ".html" : ""
+  - activeClass = active ? "active" : "not-active"
 
-  article.post(id=markdownInclude)
+  article.post(id=markdownInclude, class=activeClass)
     header
       a(href="/#{markdownInclude}.html")
         h1.headline-primary= post.title

@@ -9,3 +9,16 @@
 @require "globals/_defaults"
 
 @require "components/**/[^_]*.styl"
+
+pre[class*="language-"]
+  padding .5rem 1rem .7rem 1rem
+code
+  font-size .6rem
+
+:not(pre) > code[class*="language-"], pre[class*="language-"]
+  background #fff
+  margin-right -1rem
+  margin-left -1rem
+
+
+  // background transparent

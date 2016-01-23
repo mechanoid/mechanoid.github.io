@@ -99,17 +99,14 @@ gulp.task('images', function() {
     .pipe(gulp.dest(assetPath + '/images'));
 });
 
-gulp.task('vendor-resources', function() {
-  return gulp.src([
-		'./node_modules/jquery/dist/jquery.js',
-		'./node_modules/hammerjs/hammer.js'
-	])
-    .pipe(gulp.dest(assetPath + '/vendor'));
-});
-
 gulp.task('scripts', function() {
-  return gulp.src(['./lib/**/*.js', './node_modules/clipboard/dist/clipboard.js'])
-    .pipe(gulp.dest(assetPath + '/javascripts'));
+  return gulp.src(['./lib/**/*.js'
+	, './node_modules/clipboard/dist/clipboard.js'
+	, './node_modules/prismjs/prism.js'
+	, './node_modules/jquery/dist/jquery.js',
+	, './node_modules/hammerjs/hammer.js'
+	])
+  .pipe(gulp.dest(assetPath + '/javascripts'));
 });
 
 gulp.task('asset-revisioning', ['styles', 'scripts'], function () {
@@ -120,7 +117,7 @@ gulp.task('asset-revisioning', ['styles', 'scripts'], function () {
     .pipe(gulp.dest(assetPath)); // write manifest to build dir
 });
 
-gulp.task('styles', function () {
+gulp.task('stylus', function () {
   return gulp.src('./lib/*.styl')
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -132,6 +129,13 @@ gulp.task('styles', function () {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(assetPath + '/styles'));
 });
+
+gulp.task('static-styles', function() {
+	return gulp.src(['node_modules/prismjs/themes/prism.css'])
+	.pipe(gulp.dest(assetPath + '/styles'));
+});
+
+gulp.task('styles', ['stylus', 'static-styles']);
 
 gulp.task('enable-prod-env', function(cb) {
 	config.envbak = config.env;
@@ -148,11 +152,11 @@ gulp.task('disable-prod-env', function(cb) {
 });
 
 gulp.task('build', function(cb) {
-	return gulpSequence('clean', 'post-include-mixins', 'asset-revisioning', 'templates', 'images', 'vendor-resources')(cb);
+	return gulpSequence('clean', 'post-include-mixins', 'asset-revisioning', 'templates', 'images')(cb);
 })
 
 gulp.task('build-release', function(cb) {
-	return gulpSequence('clean', 'post-include-mixins', 'asset-revisioning', 'enable-prod-env', 'templates', 'disable-prod-env', 'images', 'vendor-resources')(cb);
+	return gulpSequence('clean', 'post-include-mixins', 'asset-revisioning', 'enable-prod-env', 'templates', 'disable-prod-env', 'images')(cb);
 })
 
 gulp.task('default', ['build']);

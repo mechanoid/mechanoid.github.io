@@ -10,3 +10,6 @@ mixin main-nav
         each post, id in ctx
           li.nav-item.fa.fa-star
             a.nav-link(href="/#{id}.html")= post.title
+
+        li.nav-item.fa.fa-legal.impressum
+          a.nav-link(href="/impressum.html") Impressum

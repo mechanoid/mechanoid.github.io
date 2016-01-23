@@ -39,6 +39,7 @@ buildPaths.push('./lib/*');
 
 var watchPaths = templatePathsWithExcludes.slice();
 watchPaths.push('./lib/**/*');
+watchPaths.push('./tempates/**/*.jade');
 
 var jadeFiles  = templatePathsWithExcludes.slice()
 jadeFiles.push('./templates/**/*.jade');

@@ -11,7 +11,7 @@ xhero-banner-bg = pearl-black
   background-size cover
   background-position center center
 
-  +desktop()
+  +up-from-tablet()
     &
       text-align center
 
@@ -23,7 +23,7 @@ xhero-banner-bg = pearl-black
 
     .hero-banner-call2action
       margin-top 2rem
-      +desktop()
+      +up-from-tablet()
         &
           display inline-block
           padding .8rem 4rem
@@ -48,7 +48,17 @@ xhero-banner-bg = pearl-black
     .hero-banner-message
       position absolute
       left 0
+      right 0
       bottom 5%
+
+      +tablet()
+        left 10%
+        right 10%
+
+      +desktop()
+        left 20%
+        right 20%
+
 
 
 .js .rlb

@@ -9,6 +9,12 @@ first-letter-highlighting()
   padding 1rem
   animation: pulse 0.2s linear 1;
 
+  +tablet()
+    padding 1rem 10%
+
+  +desktop()
+    padding 1rem 10% 1rem 40%
+
 
 .post
   // overflow hidden
@@ -23,7 +29,7 @@ first-letter-highlighting()
 
     & > p:first-child::first-letter
       first-letter-highlighting()
-      
+
 .post-meta
   ft-primary()
   margin-top 0
@@ -31,6 +37,9 @@ first-letter-highlighting()
 .post-category, .post-date, .post-author
   font-size .7rem
   font-size 3.5vw
+
+  +up-from-tablet()
+    font-size .7rem
 
 .post-category, .post-date
   text-transform uppercase

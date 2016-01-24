@@ -1,8 +1,12 @@
 mixin post(post, markdownInclude, isView, active)
-  - dateOptions = { weekday: "long", year: "numeric", month: "short" };
-  - formattedDate = new Date(post.date).toLocaleDateString("en-us", dateOptions);
+  - dateLongOptions = { weekday: "long", year: "numeric", month: "short" };
+  - dateShortOptions = { weekday: "short", year: "numeric", month: "narrow" };
+  - date = new Date(post.date)
+  - longDate = date.toLocaleDateString("en-US", dateLongOptions);
+  - shortDate = date.toLocaleDateString("en-US", dateOptions);
   - postPath = isView ? markdownInclude + ".html" : ""
   - activeClass = active ? "active" : "not-active"
+  - category = post.category || "software development"
 
   article.post(id=markdownInclude, class=activeClass)
     header
@@ -10,8 +14,9 @@ mixin post(post, markdownInclude, isView, active)
         h1.headline-primary= post.title
       
       p.post-meta(title=post.title)
-        span.post-category Frontend Architecture • 
-        span.post-date= formattedDate
+        span.post-category= category
+        |  • 
+        span.post-date= longDate
         span.post-author by Falk Hoppe
         
         
@@ -29,6 +34,10 @@ mixin post(post, markdownInclude, isView, active)
           
       .post-footer-content
         h3.headline-sub= post.title
+        
+        span.post-date= shortDate 
+        |  // 
+        span.post-category= category
         
   
         

@@ -11,6 +11,10 @@
   z-index 10
   border-bottom 500px solid white
 
+  //
+  // +up-from-tablet()
+  //   display none !important
+
   .post:target &, .post.active &
     bottom -500px
     top auto
@@ -47,6 +51,9 @@
   .post-footer
     .scroll-status
       display inline
+
+      // +up-from-tablet()
+      //   display none
 
     .open, .copy-link
       display block

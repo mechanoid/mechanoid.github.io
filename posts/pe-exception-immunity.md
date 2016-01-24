@@ -1,4 +1,8 @@
 ---
+author: 
+  name: Falk Hoppe
+  uri: https://twitter.com/nothing_box
+  email: falkhoppe81@gmail.com
 title: Progressive Enhancement is no cure to JS exceptions
 date: 2016-01-10
 category: frontend architecture

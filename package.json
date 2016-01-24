@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "clipboard": "^1.5.5",
+    "gulp-rss": "0.0.1",
     "prismjs": "^1.3.0"
   }
 }

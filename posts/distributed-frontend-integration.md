@@ -1,4 +1,8 @@
 ---
+author:
+  name: Falk Hoppe
+  uri: https://twitter.com/nothing_box
+  email: falkhoppe81@gmail.com
 title: The realms of distributed frontend integration
 date: 2016-01-10
 category: frontend architecture

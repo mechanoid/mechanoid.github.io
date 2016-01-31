@@ -153,7 +153,6 @@
 
   $('.nav-toggle, .nav-close').on('click', function(e) {
     e.preventDefault();
-    console.log('click')
     $(e.target).closest('.nav').toggleClass('active');
   });
 

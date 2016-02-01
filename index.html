@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>relentless development</title>
     <link rel="stylesheet" href="/assets/styles/prism-6d14265e81.css"/>
-    <link rel="stylesheet" href="/assets/styles/main-49557bf090.css"/>
+    <link rel="stylesheet" href="/assets/styles/main-b9427afbc2.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script>
       /*! modernizr 3.2.0 (Custom Build) | MIT *
@@ -18,7 +18,7 @@
       <button class="nav-toggle btn-primary fa fa-reorder"></button>
       <button class="nav-close fa fa-remove"></button><a href="/feed.xml" title="rss feed" class="tooltip left nav-rss fa fa-feed"></a><a href="http://www.twitter.com/nothing_box" title="twitter" class="tooltip left nav-twitter fa fa-twitter"></a>
       <ul class="nav-list">
-        <li class="nav-item fa fa-home"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item fa fa-home active"><a href="/" class="nav-link">Home</a></li>
         <li class="nav-item fa fa-star"><a href="/distributed-frontend-integration.html" class="nav-link">The realms of distributed frontend integration</a>
           <p class="post-nav-meta"><span class="post-date">1/10/2016</span> • <span class="post-category">frontend architecture</span></p>
         </li>
@@ -32,15 +32,33 @@
       <main id="rlb-main" class="rlb-content hero-banner-content"><a title="Relentless Development" href="http://www.relentless-development.com" rel="self" class="brand">
            
           Relentless Development<span class="brand-subline">relentless thoughts on software development, software architecture and related stuff</span></a>
-        <section class="posts">
-          <article id="distributed-frontend-integration" class="post active">
-            <header><a href="/distributed-frontend-integration.html">
-                <h1 class="headline-primary">The realms of distributed frontend integration</h1></a>
-              <p title="The realms of distributed frontend integration" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Jan 2016 Sunday</span><span class="post-author">by Falk Hoppe</span></p>
-            </header>
-            <h2 class="headline-sub post-tldr-headline">#tl;dr</h2>
-            <p class="post-tldr">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <div class="markdown-container"><p>Recently some colleagues and me ended up in a discussion about frontend architecture in a distributed service environment. This post shoould sum up some of the thoughts that were mentioned there. Before we start, i first want to thank <a href="https://twitter.com/tillsc">@tillsc</a> and <a href="https://twitter.com/ewolff">@ewolff</a> for their enlightenments.</p>
+        <section class="posts"><a title="Relentless Development" href="http://www.relentless-development.com" rel="self" class="brand">
+             
+            Relentless Development<span class="brand-subline">relentless thoughts on software development, software architecture and related stuff</span></a>
+          <nav class="main nav">
+            <button class="nav-toggle btn-primary fa fa-reorder"></button>
+            <button class="nav-close fa fa-remove"></button><a href="/feed.xml" title="rss feed" class="tooltip left nav-rss fa fa-feed"></a><a href="http://www.twitter.com/nothing_box" title="twitter" class="tooltip left nav-twitter fa fa-twitter"></a>
+            <ul class="nav-list">
+              <li class="nav-item fa fa-home"><a href="/" class="nav-link">Home</a></li>
+              <li class="nav-item fa fa-star active"><a href="/distributed-frontend-integration.html" class="nav-link">The realms of distributed frontend integration</a>
+                <p class="post-nav-meta"><span class="post-date">1/10/2016</span> • <span class="post-category">frontend architecture</span></p>
+              </li>
+              <li class="nav-item fa fa-star"><a href="/pe-exception-immunity.html" class="nav-link">Progressive Enhancement is no cure to JS exceptions</a>
+                <p class="post-nav-meta"><span class="post-date">1/10/2016</span> • <span class="post-category">frontend architecture</span></p>
+              </li>
+              <li class="nav-item fa fa-legal impressum"><a href="/impressum.html" class="nav-link">Impressum</a></li>
+            </ul>
+          </nav>
+          <main class="rlb-content">
+            <section class="post-view">
+              <article id="distributed-frontend-integration" class="post active">
+                <header><a href="/distributed-frontend-integration.html">
+                    <h1 class="headline-primary">The realms of distributed frontend integration</h1></a>
+                  <p title="The realms of distributed frontend integration" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Jan 2016 Sunday</span><span class="post-author">by Falk Hoppe</span></p>
+                </header>
+                <h2 class="headline-sub post-tldr-headline">#tl;dr</h2>
+                <p class="post-tldr">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="markdown-container"><p>Recently some colleagues and me ended up in a discussion about frontend architecture in a distributed service environment. This post shoould sum up some of the thoughts that were mentioned there. Before we start, i first want to thank <a href="https://twitter.com/tillsc">@tillsc</a> and <a href="https://twitter.com/ewolff">@ewolff</a> for their enlightenments.</p>
 <p>If we talk about web applications sliced into smaller applications, we often discuss problems like distributed storage or about the business scope of the targeted applications.<br>
 But as a problem that got more attention lately, we want to talk about the different solutions of how to provide frontend assets to a microservice or <a href="http://scs-architecture.org/">SCS</a> landscape.</p>
 <p>To make sure, that this article is not another discussion about how big services should be sliced, lets assume that we have a set of business scoped pillars, that each provide a view on a different scope of your business landscape.</p>
@@ -55,25 +73,66 @@ But as a problem that got more attention lately, we want to talk about the diffe
 <p>If you are familiar with distributed application architecture or distributed storage you may have read something about <a href="http://www.cs.berkeley.edu/~brewer/">Eric Brewers</a> <a href="http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf">CAP</a> theorem. In short it tells us that you have to choose at most two properties out of Consistency, Availability and Partition Tolerance.</p>
 <p>As a disclaimer i don’t want to claim something likewise ingenious for myself, but i didn’t overcome that there seems to be similar pattern for <strong>independency</strong>, <strong>uniformity</strong> and <strong>syncronicity</strong> at distributed frontends.</p>
 
-            </div>
-            <footer class="post-footer">
-              <nav class="post-nav"> 
-                <button title="information" class="open fa fa-info tooltip up"></button>
-                <ul class="scroll-status"></ul><a title="copy link" data-clipboard-text="http://mechanoid.github.io/blog/distributed-frontend-integration.html" class="clipboard tooltip up copy-link fa fa-link"></a>
-              </nav>
-              <div class="post-footer-content">
-                <h3 class="headline-sub">The realms of distributed frontend integration</h3><span class="post-date">1/10/2016</span> // <span class="post-category">frontend architecture</span>
-              </div>
-            </footer>
-          </article>
-          <article id="pe-exception-immunity" class="post not-active">
-            <header><a href="/pe-exception-immunity.html">
-                <h1 class="headline-primary">Progressive Enhancement is no cure to JS exceptions</h1></a>
-              <p title="Progressive Enhancement is no cure to JS exceptions" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Jan 2016 Sunday</span><span class="post-author">by Falk Hoppe</span></p>
-            </header>
-            <h2 class="headline-sub post-tldr-headline">#tl;dr</h2>
-            <p class="post-tldr">Progressive enhancement is not saving you from making errors, and your application may have major outages if you let them crawl into production, whether you want it to be true or not. Yes SPAs have this problem, because they naturally rely heavily on js, but so do modern progressively enhanced webapps.</p>
-            <div class="markdown-container"><h2>Progressive Enhancement is not a cure to everything</h2>
+                </div>
+                <footer class="post-footer">
+                  <nav class="post-nav"> 
+                    <button title="information" class="open fa fa-info tooltip up"></button>
+                    <ul class="scroll-status"></ul><a title="copy link" data-clipboard-text="http://mechanoid.github.io/blog/distributed-frontend-integration.html" class="clipboard tooltip up copy-link fa fa-link"></a>
+                  </nav>
+                  <div class="post-footer-content">
+                    <h3 class="headline-sub">The realms of distributed frontend integration</h3><span class="post-date">1/10/2016</span> // <span class="post-category">frontend architecture</span>
+                  </div>
+                </footer>
+              </article>
+              <footer class="rlb-footer">
+                <div class="author-information">
+                  <div class="author-avatar"><img src="/assets/images/avatar.png"/></div>
+                  <div class="author">Falk Hoppe</div>
+                  <div class="author-subline">
+                     
+                    Software Dev in <span class="highlight">♥ </span> with Javascript, GO, Ruby, HTML, CSS and at <a href="http://www.innoq.com">innoQ</a>
+                  </div>
+                  <div class="social-networks">
+                    <div class="twitter"> <i class="fa fa-twitter"> </i> <a href="https://twitter.com/nothing_box">twitter/@nothing_box</a></div>
+                    <div class="github"> <i class="fa fa-github-alt"> </i> <a href="https://github.com/mechanoid">github/@mechanoid</a></div>
+                  </div>
+                </div>
+                <div class="copy-right-notice">
+                  <p class="impressum-link"><a href="/impressum.html">Impressum</a></p>
+                  <p class="copyright-hint">
+                     
+                    &copy; Copyright 2016. <br/>All rights reserved.
+                  </p>
+                </div>
+              </footer>
+            </section>
+          </main><a title="Relentless Development" href="http://www.relentless-development.com" rel="self" class="brand">
+             
+            Relentless Development<span class="brand-subline">relentless thoughts on software development, software architecture and related stuff</span></a>
+          <nav class="main nav">
+            <button class="nav-toggle btn-primary fa fa-reorder"></button>
+            <button class="nav-close fa fa-remove"></button><a href="/feed.xml" title="rss feed" class="tooltip left nav-rss fa fa-feed"></a><a href="http://www.twitter.com/nothing_box" title="twitter" class="tooltip left nav-twitter fa fa-twitter"></a>
+            <ul class="nav-list">
+              <li class="nav-item fa fa-home"><a href="/" class="nav-link">Home</a></li>
+              <li class="nav-item fa fa-star"><a href="/distributed-frontend-integration.html" class="nav-link">The realms of distributed frontend integration</a>
+                <p class="post-nav-meta"><span class="post-date">1/10/2016</span> • <span class="post-category">frontend architecture</span></p>
+              </li>
+              <li class="nav-item fa fa-star active"><a href="/pe-exception-immunity.html" class="nav-link">Progressive Enhancement is no cure to JS exceptions</a>
+                <p class="post-nav-meta"><span class="post-date">1/10/2016</span> • <span class="post-category">frontend architecture</span></p>
+              </li>
+              <li class="nav-item fa fa-legal impressum"><a href="/impressum.html" class="nav-link">Impressum</a></li>
+            </ul>
+          </nav>
+          <main class="rlb-content">
+            <section class="post-view">
+              <article id="pe-exception-immunity" class="post not-active">
+                <header><a href="/pe-exception-immunity.html">
+                    <h1 class="headline-primary">Progressive Enhancement is no cure to JS exceptions</h1></a>
+                  <p title="Progressive Enhancement is no cure to JS exceptions" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Jan 2016 Sunday</span><span class="post-author">by Falk Hoppe</span></p>
+                </header>
+                <h2 class="headline-sub post-tldr-headline">#tl;dr</h2>
+                <p class="post-tldr">Progressive enhancement is not saving you from making errors, and your application may have major outages if you let them crawl into production, whether you want it to be true or not. Yes SPAs have this problem, because they naturally rely heavily on js, but so do modern progressively enhanced webapps.</p>
+                <div class="markdown-container"><h2>Progressive Enhancement is not a cure to everything</h2>
 <p>Since Single Page Apps came up, there is (for good and many reasons) a community discussing the disadvantages of SPAs and where they have failed.
 One big argument that is spread into each and every discussion about SPAs versus its older counterpart Progressive enhancement is
 the <em>white-page</em> nightmare and that single javascript errors can kick your page in the groins. Once you search for <em>progressive enhancement vs. single page app</em> and <em>white page</em> and similar you will find a bunch of articles, that buy in into this argument, like <a href="https://www.leaseweb.com/labs/2013/07/10-very-good-reasons-to-stop-using-javascript/">here</a>, <a href="http://programmers.stackexchange.com/questions/237537/progressive-enhancement-vs-single-page-apps#comment546103_238021">here</a> and <a href="https://www.christianheilmann.com/2011/12/28/on-single-page-apps/">here</a>.
@@ -94,17 +153,40 @@ I only gave it a quick shot, but you may find several maybe better examples for 
 <p>A maybe good argument for SPAs, that came often to me, is that they help to form a nice server API. In my opinion a progressive enhanced app is a good to go for writing robust web applications. The matter here is in fact, that usually you are enhancing your application step by step, and you have the choice to remove those enhancements if it just does not work out.</p>
 <p>So what happens if a js exception made it to production and kills your remote form? If you build it wise, just remove this functionality for a time, and give your users the chance to use your app again. The user experience may be not the shiny golden star you have dreamed of, but your customers will have the chance to by your product, use your service, and so on.</p>
 
-            </div>
-            <footer class="post-footer">
-              <nav class="post-nav"> 
-                <button title="information" class="open fa fa-info tooltip up"></button>
-                <ul class="scroll-status"></ul><a title="copy link" data-clipboard-text="http://mechanoid.github.io/blog/pe-exception-immunity.html" class="clipboard tooltip up copy-link fa fa-link"></a>
-              </nav>
-              <div class="post-footer-content">
-                <h3 class="headline-sub">Progressive Enhancement is no cure to JS exceptions</h3><span class="post-date">1/10/2016</span> // <span class="post-category">frontend architecture</span>
-              </div>
-            </footer>
-          </article>
+                </div>
+                <footer class="post-footer">
+                  <nav class="post-nav"> 
+                    <button title="information" class="open fa fa-info tooltip up"></button>
+                    <ul class="scroll-status"></ul><a title="copy link" data-clipboard-text="http://mechanoid.github.io/blog/pe-exception-immunity.html" class="clipboard tooltip up copy-link fa fa-link"></a>
+                  </nav>
+                  <div class="post-footer-content">
+                    <h3 class="headline-sub">Progressive Enhancement is no cure to JS exceptions</h3><span class="post-date">1/10/2016</span> // <span class="post-category">frontend architecture</span>
+                  </div>
+                </footer>
+              </article>
+              <footer class="rlb-footer">
+                <div class="author-information">
+                  <div class="author-avatar"><img src="/assets/images/avatar.png"/></div>
+                  <div class="author">Falk Hoppe</div>
+                  <div class="author-subline">
+                     
+                    Software Dev in <span class="highlight">♥ </span> with Javascript, GO, Ruby, HTML, CSS and at <a href="http://www.innoq.com">innoQ</a>
+                  </div>
+                  <div class="social-networks">
+                    <div class="twitter"> <i class="fa fa-twitter"> </i> <a href="https://twitter.com/nothing_box">twitter/@nothing_box</a></div>
+                    <div class="github"> <i class="fa fa-github-alt"> </i> <a href="https://github.com/mechanoid">github/@mechanoid</a></div>
+                  </div>
+                </div>
+                <div class="copy-right-notice">
+                  <p class="impressum-link"><a href="/impressum.html">Impressum</a></p>
+                  <p class="copyright-hint">
+                     
+                    &copy; Copyright 2016. <br/>All rights reserved.
+                  </p>
+                </div>
+              </footer>
+            </section>
+          </main>
         </section>
         <footer class="rlb-footer">
           <div class="author-information">

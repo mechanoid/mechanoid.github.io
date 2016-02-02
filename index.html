@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>relentless development</title>
     <link rel="stylesheet" href="/assets/styles/prism-6d14265e81.css"/>
-    <link rel="stylesheet" href="/assets/styles/main-b9427afbc2.css"/>
+    <link rel="stylesheet" href="/assets/styles/main-c49b550f30.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script>
       /*! modernizr 3.2.0 (Custom Build) | MIT *
@@ -31,25 +31,25 @@
     <div class="hero-banner-page">
       <main id="rlb-main" class="rlb-content hero-banner-content"><a title="Relentless Development" href="http://www.relentless-development.com" rel="self" class="brand">
            
+          Relentless Development<span class="brand-subline">relentless thoughts on software development, software architecture and related stuff</span></a><a title="Relentless Development" href="http://www.relentless-development.com" rel="self" class="brand">
+           
           Relentless Development<span class="brand-subline">relentless thoughts on software development, software architecture and related stuff</span></a>
-        <section class="posts"><a title="Relentless Development" href="http://www.relentless-development.com" rel="self" class="brand">
-             
-            Relentless Development<span class="brand-subline">relentless thoughts on software development, software architecture and related stuff</span></a>
-          <nav class="main nav">
-            <button class="nav-toggle btn-primary fa fa-reorder"></button>
-            <button class="nav-close fa fa-remove"></button><a href="/feed.xml" title="rss feed" class="tooltip left nav-rss fa fa-feed"></a><a href="http://www.twitter.com/nothing_box" title="twitter" class="tooltip left nav-twitter fa fa-twitter"></a>
-            <ul class="nav-list">
-              <li class="nav-item fa fa-home"><a href="/" class="nav-link">Home</a></li>
-              <li class="nav-item fa fa-star active"><a href="/distributed-frontend-integration.html" class="nav-link">The realms of distributed frontend integration</a>
-                <p class="post-nav-meta"><span class="post-date">2/29/2016</span> • <span class="post-category">frontend architecture</span></p>
-              </li>
-              <li class="nav-item fa fa-star"><a href="/pe-exception-immunity.html" class="nav-link">Progressive Enhancement is no cure to JS exceptions</a>
-                <p class="post-nav-meta"><span class="post-date">2/28/2016</span> • <span class="post-category">frontend architecture</span></p>
-              </li>
-              <li class="nav-item fa fa-legal impressum"><a href="/impressum.html" class="nav-link">Impressum</a></li>
-            </ul>
-          </nav>
-          <main class="rlb-content">
+        <nav class="main nav">
+          <button class="nav-toggle btn-primary fa fa-reorder"></button>
+          <button class="nav-close fa fa-remove"></button><a href="/feed.xml" title="rss feed" class="tooltip left nav-rss fa fa-feed"></a><a href="http://www.twitter.com/nothing_box" title="twitter" class="tooltip left nav-twitter fa fa-twitter"></a>
+          <ul class="nav-list">
+            <li class="nav-item fa fa-home"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item fa fa-star active"><a href="/distributed-frontend-integration.html" class="nav-link">The realms of distributed frontend integration</a>
+              <p class="post-nav-meta"><span class="post-date">2/29/2016</span> • <span class="post-category">frontend architecture</span></p>
+            </li>
+            <li class="nav-item fa fa-star"><a href="/pe-exception-immunity.html" class="nav-link">Progressive Enhancement is no cure to JS exceptions</a>
+              <p class="post-nav-meta"><span class="post-date">2/28/2016</span> • <span class="post-category">frontend architecture</span></p>
+            </li>
+            <li class="nav-item fa fa-legal impressum"><a href="/impressum.html" class="nav-link">Impressum</a></li>
+          </ul>
+        </nav>
+        <main class="rlb-content">
+          <section class="posts">
             <section class="post-view">
               <article id="distributed-frontend-integration" class="post active">
                 <header><a href="/distributed-frontend-integration.html">
@@ -57,13 +57,12 @@
                   <p title="The realms of distributed frontend integration" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Feb 2016 Monday</span><span class="post-author">by Falk Hoppe</span></p>
                 </header>
                 <h2 class="headline-sub post-tldr-headline">#tl;dr</h2>
-                <p class="post-tldr">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <div class="markdown-container"><p>Recently some colleagues and me ended up in a discussion about frontend architecture in a distributed service environment. This post shoould sum up some of the thoughts that were mentioned there. Before we start, i first want to thank <a href="https://twitter.com/tillsc">@tillsc</a> and <a href="https://twitter.com/ewolff">@ewolff</a> for their enlightenments.</p>
-<p>If we talk about web applications sliced into smaller applications, we often discuss problems like distributed storage or about the business scope of the targeted applications.<br>
-But as a problem that got more attention lately, we want to talk about the different solutions of how to provide frontend assets to a microservice or <a href="http://scs-architecture.org/">SCS</a> landscape.</p>
-<p>To make sure, that this article is not another discussion about how big services should be sliced, lets assume that we have a set of business scoped pillars, that each provide a view on a different scope of your business landscape.</p>
+                <p class="post-tldr">tbd.</p>
+                <div class="markdown-container"><p>Recently some colleagues and I ended up in a discussion about frontend architecture in a distributed service environment. This post should sum up some of the thoughts that were mentioned there. Before we start, i first want to thank <a href="https://twitter.com/tillsc">@tillsc</a> and <a href="https://twitter.com/ewolff">@ewolff</a> for their enlightenments.</p>
+<p>If we talk about web applications sliced into smaller applications we often discuss problems like distributed storage or about the business scope of the targeted applications. But as a problem that got more attention lately I want to talk about the different solutions of how to provide frontend assets to a microservice or <a href="http://scs-architecture.org/">SCS</a> landscape.</p>
+<p>To make sure that this article is not another discussion about in how big or small slices a service should be broken up lets assume that we have a set of business scoped pillars, that each provide a view on a different scope of your business landscape.</p>
 <h3>uniformity</h3>
-<p>In such an environment, there are different requirements that emerge from our decision of slicing an app domain to multiple apps in favour to have a business monolith. While it is natural,  that your application has the same look and feel throughout your application in a monolith, it is a factor we have to care or in distributed apps. So <strong>uniformity</strong> is our first qualifier for a good distributed frontend architecture, because for many different reasons, it makes sense to provide a seamless user experience over all applications.</p>
+<p>In such an environment, there are different requirements that emerge from our decision of slicing an app domain to multiple apps in favor of having a business monolith. While it is natural,  that your application has the same look and feel throughout your application in a monolith, it is a factor we have to care or in distributed apps. So <strong>uniformity</strong> is our first qualifier for a good distributed frontend architecture, because for many different reasons, it makes sense to provide a seamless user experience over all applications.</p>
 <h3>independence</h3>
 <p>One key requirement which we aim for, when deciding for a distributed application architecture is <strong>independency</strong> in development and deployment of our services. We want to have services to be releasable as often as we want, maybe a few times a day or even every few minutes. So while it is a good practice to provide a central UI Kit for building distributed frontends, so that it is easy to bring the look and feel into place, each application with a seperate UI should be able to release own assets into place if they have a need for them.</p>
 <p>As an example just think of a service pillar, that is responsibe for the representation of business analytics delivering a big pile of chart related assets and similar that is not needed anywhere else in our application set. There should be no reason not to release a  new version of that service pillar to production in case the updates are scoped to the chart libraries. In contrast to that, changes in the centralized UI kit, that is included in the service should not block any deployments of this service, if we want to speak about independence.</p>
@@ -85,24 +84,26 @@ But as a problem that got more attention lately, we want to talk about the diffe
                 </footer>
               </article>
             </section>
-          </main><a title="Relentless Development" href="http://www.relentless-development.com" rel="self" class="brand">
-             
-            Relentless Development<span class="brand-subline">relentless thoughts on software development, software architecture and related stuff</span></a>
-          <nav class="main nav">
-            <button class="nav-toggle btn-primary fa fa-reorder"></button>
-            <button class="nav-close fa fa-remove"></button><a href="/feed.xml" title="rss feed" class="tooltip left nav-rss fa fa-feed"></a><a href="http://www.twitter.com/nothing_box" title="twitter" class="tooltip left nav-twitter fa fa-twitter"></a>
-            <ul class="nav-list">
-              <li class="nav-item fa fa-home"><a href="/" class="nav-link">Home</a></li>
-              <li class="nav-item fa fa-star"><a href="/distributed-frontend-integration.html" class="nav-link">The realms of distributed frontend integration</a>
-                <p class="post-nav-meta"><span class="post-date">2/29/2016</span> • <span class="post-category">frontend architecture</span></p>
-              </li>
-              <li class="nav-item fa fa-star active"><a href="/pe-exception-immunity.html" class="nav-link">Progressive Enhancement is no cure to JS exceptions</a>
-                <p class="post-nav-meta"><span class="post-date">2/28/2016</span> • <span class="post-category">frontend architecture</span></p>
-              </li>
-              <li class="nav-item fa fa-legal impressum"><a href="/impressum.html" class="nav-link">Impressum</a></li>
-            </ul>
-          </nav>
-          <main class="rlb-content">
+          </section>
+        </main><a title="Relentless Development" href="http://www.relentless-development.com" rel="self" class="brand">
+           
+          Relentless Development<span class="brand-subline">relentless thoughts on software development, software architecture and related stuff</span></a>
+        <nav class="main nav">
+          <button class="nav-toggle btn-primary fa fa-reorder"></button>
+          <button class="nav-close fa fa-remove"></button><a href="/feed.xml" title="rss feed" class="tooltip left nav-rss fa fa-feed"></a><a href="http://www.twitter.com/nothing_box" title="twitter" class="tooltip left nav-twitter fa fa-twitter"></a>
+          <ul class="nav-list">
+            <li class="nav-item fa fa-home"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item fa fa-star"><a href="/distributed-frontend-integration.html" class="nav-link">The realms of distributed frontend integration</a>
+              <p class="post-nav-meta"><span class="post-date">2/29/2016</span> • <span class="post-category">frontend architecture</span></p>
+            </li>
+            <li class="nav-item fa fa-star active"><a href="/pe-exception-immunity.html" class="nav-link">Progressive Enhancement is no cure to JS exceptions</a>
+              <p class="post-nav-meta"><span class="post-date">2/28/2016</span> • <span class="post-category">frontend architecture</span></p>
+            </li>
+            <li class="nav-item fa fa-legal impressum"><a href="/impressum.html" class="nav-link">Impressum</a></li>
+          </ul>
+        </nav>
+        <main class="rlb-content">
+          <section class="posts">
             <section class="post-view">
               <article id="pe-exception-immunity" class="post not-active">
                 <header><a href="/pe-exception-immunity.html">
@@ -144,8 +145,8 @@ I only gave it a quick shot, but you may find several maybe better examples for 
                 </footer>
               </article>
             </section>
-          </main>
-        </section>
+          </section>
+        </main>
         <footer class="rlb-footer">
           <div class="author-information">
             <div class="author-avatar"><img src="/assets/images/avatar.png"/></div>

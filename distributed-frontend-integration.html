@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>relentless development</title>
     <link rel="stylesheet" href="/assets/styles/prism-6d14265e81.css"/>
-    <link rel="stylesheet" href="/assets/styles/main-b9427afbc2.css"/>
+    <link rel="stylesheet" href="/assets/styles/main-c49b550f30.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script>
       /*! modernizr 3.2.0 (Custom Build) | MIT *
@@ -31,20 +31,20 @@
       </ul>
     </nav>
     <main class="rlb-content">
-      <section class="post-view">
-        <article id="distributed-frontend-integration" class="post not-active">
-          <header><a href="/distributed-frontend-integration.html">
-              <h1 class="headline-primary">The realms of distributed frontend integration</h1></a>
-            <p title="The realms of distributed frontend integration" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Feb 2016 Monday</span><span class="post-author">by Falk Hoppe</span></p>
-          </header>
-          <h2 class="headline-sub post-tldr-headline">#tl;dr</h2>
-          <p class="post-tldr">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <div class="markdown-container"><p>Recently some colleagues and me ended up in a discussion about frontend architecture in a distributed service environment. This post shoould sum up some of the thoughts that were mentioned there. Before we start, i first want to thank <a href="https://twitter.com/tillsc">@tillsc</a> and <a href="https://twitter.com/ewolff">@ewolff</a> for their enlightenments.</p>
-<p>If we talk about web applications sliced into smaller applications, we often discuss problems like distributed storage or about the business scope of the targeted applications.<br>
-But as a problem that got more attention lately, we want to talk about the different solutions of how to provide frontend assets to a microservice or <a href="http://scs-architecture.org/">SCS</a> landscape.</p>
-<p>To make sure, that this article is not another discussion about how big services should be sliced, lets assume that we have a set of business scoped pillars, that each provide a view on a different scope of your business landscape.</p>
+      <section class="posts">
+        <section class="post-view">
+          <article id="distributed-frontend-integration" class="post not-active">
+            <header><a href="/distributed-frontend-integration.html">
+                <h1 class="headline-primary">The realms of distributed frontend integration</h1></a>
+              <p title="The realms of distributed frontend integration" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Feb 2016 Monday</span><span class="post-author">by Falk Hoppe</span></p>
+            </header>
+            <h2 class="headline-sub post-tldr-headline">#tl;dr</h2>
+            <p class="post-tldr">tbd.</p>
+            <div class="markdown-container"><p>Recently some colleagues and I ended up in a discussion about frontend architecture in a distributed service environment. This post should sum up some of the thoughts that were mentioned there. Before we start, i first want to thank <a href="https://twitter.com/tillsc">@tillsc</a> and <a href="https://twitter.com/ewolff">@ewolff</a> for their enlightenments.</p>
+<p>If we talk about web applications sliced into smaller applications we often discuss problems like distributed storage or about the business scope of the targeted applications. But as a problem that got more attention lately I want to talk about the different solutions of how to provide frontend assets to a microservice or <a href="http://scs-architecture.org/">SCS</a> landscape.</p>
+<p>To make sure that this article is not another discussion about in how big or small slices a service should be broken up lets assume that we have a set of business scoped pillars, that each provide a view on a different scope of your business landscape.</p>
 <h3>uniformity</h3>
-<p>In such an environment, there are different requirements that emerge from our decision of slicing an app domain to multiple apps in favour to have a business monolith. While it is natural,  that your application has the same look and feel throughout your application in a monolith, it is a factor we have to care or in distributed apps. So <strong>uniformity</strong> is our first qualifier for a good distributed frontend architecture, because for many different reasons, it makes sense to provide a seamless user experience over all applications.</p>
+<p>In such an environment, there are different requirements that emerge from our decision of slicing an app domain to multiple apps in favor of having a business monolith. While it is natural,  that your application has the same look and feel throughout your application in a monolith, it is a factor we have to care or in distributed apps. So <strong>uniformity</strong> is our first qualifier for a good distributed frontend architecture, because for many different reasons, it makes sense to provide a seamless user experience over all applications.</p>
 <h3>independence</h3>
 <p>One key requirement which we aim for, when deciding for a distributed application architecture is <strong>independency</strong> in development and deployment of our services. We want to have services to be releasable as often as we want, maybe a few times a day or even every few minutes. So while it is a good practice to provide a central UI Kit for building distributed frontends, so that it is easy to bring the look and feel into place, each application with a seperate UI should be able to release own assets into place if they have a need for them.</p>
 <p>As an example just think of a service pillar, that is responsibe for the representation of business analytics delivering a big pile of chart related assets and similar that is not needed anywhere else in our application set. There should be no reason not to release a  new version of that service pillar to production in case the updates are scoped to the chart libraries. In contrast to that, changes in the centralized UI kit, that is included in the service should not block any deployments of this service, if we want to speak about independence.</p>
@@ -54,32 +54,33 @@ But as a problem that got more attention lately, we want to talk about the diffe
 <p>If you are familiar with distributed application architecture or distributed storage you may have read something about <a href="http://www.cs.berkeley.edu/~brewer/">Eric Brewers</a> <a href="http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf">CAP</a> theorem. In short it tells us that you have to choose at most two properties out of Consistency, Availability and Partition Tolerance.</p>
 <p>As a disclaimer i don’t want to claim something likewise ingenious for myself, but i didn’t overcome that there seems to be similar pattern for <strong>independency</strong>, <strong>uniformity</strong> and <strong>syncronicity</strong> at distributed frontends.</p>
 
-          </div>
-          <div id="disqus_thread"></div>
-          <script>
-          var disqus_config = function () {
-            this.page.url = "http://www.relentless-development.com/distributed-frontend-integration.html";
-            this.page.identifier = "distributed-frontend-integration";
-          };
-           
-          (function() { // DON'T EDIT BELOW THIS LINE
-          var d = document, s = d.createElement('script');
-          s.src = '//relentlessdevelopment.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-          })();
-          </script>
-          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-          <footer class="post-footer">
-            <nav class="post-nav"> 
-              <button title="information" class="open fa fa-info tooltip up"></button>
-              <ul class="scroll-status"></ul><a title="copy link" data-clipboard-text="http://mechanoid.github.io/blog/distributed-frontend-integration.html" class="clipboard tooltip up copy-link fa fa-link"></a>
-            </nav>
-            <div class="post-footer-content">
-              <h3 class="headline-sub">The realms of distributed frontend integration</h3><span class="post-date">2/28/2016</span> // <span class="post-category">frontend architecture</span>
             </div>
-          </footer>
-        </article>
+            <div id="disqus_thread"></div>
+            <script>
+            var disqus_config = function () {
+              this.page.url = "http://www.relentless-development.com/distributed-frontend-integration.html";
+              this.page.identifier = "distributed-frontend-integration";
+            };
+             
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = '//relentlessdevelopment.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            <footer class="post-footer">
+              <nav class="post-nav"> 
+                <button title="information" class="open fa fa-info tooltip up"></button>
+                <ul class="scroll-status"></ul><a title="copy link" data-clipboard-text="http://mechanoid.github.io/blog/distributed-frontend-integration.html" class="clipboard tooltip up copy-link fa fa-link"></a>
+              </nav>
+              <div class="post-footer-content">
+                <h3 class="headline-sub">The realms of distributed frontend integration</h3><span class="post-date">2/28/2016</span> // <span class="post-category">frontend architecture</span>
+              </div>
+            </footer>
+          </article>
+        </section>
       </section>
     </main>
     <footer class="rlb-footer">

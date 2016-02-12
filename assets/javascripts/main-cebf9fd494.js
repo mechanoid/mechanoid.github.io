@@ -85,12 +85,16 @@
     var scrollTopWithOffset = scrollTop + viewPortOffset
     var viewPortCenter = scrollTopWithOffset - postStart;
 
-    if (scrollTopWithOffset >= postStart && scrollTopWithOffset <= postEnd && location.hash !== this.hash) {
+
+    if (scrollTopWithOffset >= postStart && scrollTopWithOffset <= postEnd) {
       var scrollTarget = scrollTop < (postStart + viewPortOffset) ? postStart : postEnd - this.browserHeight ;
 
       selectRootOnChildTargeting(this.post);
+
       this.post.parent().find('.post, .post-footer').removeClass('active');
       this.post.addClass('active');
+
+      console.log(this.post)
       window.history.replaceState("", "", this.hash);
     }
 

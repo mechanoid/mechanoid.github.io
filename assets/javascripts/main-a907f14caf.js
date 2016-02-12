@@ -150,7 +150,8 @@
 
   };
 
-  var activateCopyTooltip = function(elem, selfClose) {
+  var activateCopyTooltip = function(e, selfClose) {
+    var elem = e.trigger;
     if (!elem.jquery) {
       elem = $(elem);
     }
@@ -171,14 +172,15 @@
     if (selfClose) {
       setTimeout(function() {
         tooltip.addClass('finished');
+
+        e.clearSelection();
         setTimeout(function() { tooltip.removeClass('finished').removeClass('active'); }, 1000);
       }, 500);
     }
   }
 
   clipboard.on('success', function(e) {
-    activateCopyTooltip(e.trigger, true);
-    e.clearSelection();
+    activateCopyTooltip(e, true);
   });
 
   clipboard.on('error', function(e) {

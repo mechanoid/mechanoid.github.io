@@ -80,7 +80,7 @@
 
     var postStart = this.post.offset().top;
     var postEnd = postStart + this.height;
-    var viewPortOffset = (this.browserHeight * 1/3);
+    var viewPortOffset = 0 ; // = (this.browserHeight * 1/3);
     var scrollTop = $(window).scrollTop();
     var scrollTopWithOffset = scrollTop + viewPortOffset
     var viewPortCenter = scrollTopWithOffset - postStart;
@@ -88,13 +88,12 @@
 
     if (scrollTopWithOffset >= postStart && scrollTopWithOffset <= postEnd) {
       var scrollTarget = scrollTop < (postStart + viewPortOffset) ? postStart : postEnd - this.browserHeight ;
-
-      selectRootOnChildTargeting(this.post);
-
+      
       this.post.parent().find('.post, .post-footer').removeClass('active');
       this.post.addClass('active');
 
-      console.log(this.post)
+      selectRootOnChildTargeting(this.post);
+
       window.history.replaceState("", "", this.hash);
     }
 
@@ -103,7 +102,7 @@
       this.activateBubble(this.bubbles[bubbleIndex]);
     }
 
-    setTimeout(this.refresh.bind(this), 300);
+    setTimeout(this.refresh.bind(this), 1000);
   };
 
 

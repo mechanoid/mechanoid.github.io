@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>relentless development</title>
     <link rel="stylesheet" href="/assets/styles/prism-6d14265e81.css"/>
-    <link rel="stylesheet" href="/assets/styles/main-3cfde3b64e.css"/>
+    <link rel="stylesheet" href="/assets/styles/main-03e3dcd53f.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="alternate" href="http://www.relentless-development.com/" hreflang="x-default" />
     <link rel="alternate" href="http://www.relentless-development.com/" hreflang="en" />
     <script>
@@ -20,9 +20,6 @@
       <button class="nav-close fa fa-remove"></button><a href="/feed.xml" title="rss feed" class="tooltip left nav-rss fa fa-feed"></a><a href="http://www.twitter.com/nothing_box" title="twitter" class="tooltip left nav-twitter fa fa-twitter"></a>
       <ul class="nav-list">
         <li class="nav-item fa fa-home active"><a href="/" class="nav-link">Home</a></li>
-        <li class="nav-item fa fa-star"><a href="/distributed-frontend-integration.html" class="nav-link">The realms of distributed frontend integration</a>
-          <p class="post-nav-meta"><span class="post-date">2/29/2016</span> • <span class="post-category">frontend architecture</span></p>
-        </li>
         <li class="nav-item fa fa-star"><a href="/pe-exception-immunity.html" class="nav-link">Progressive Enhancement is no cure to JS exceptions</a>
           <p class="post-nav-meta"><span class="post-date">2/28/2016</span> • <span class="post-category">frontend architecture</span></p>
         </li>
@@ -35,43 +32,6 @@
           Relentless Development<span class="brand-subline">relentless thoughts on software development, software architecture and related stuff</span></a>
         <section class="posts">
           <section class="post-view">
-            <article id="distributed-frontend-integration" class="post">
-              <header><a href="/distributed-frontend-integration.html">
-                  <h1 class="headline-primary">The realms of distributed frontend integration</h1></a>
-                <p title="The realms of distributed frontend integration" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Feb 2016 Monday</span><span class="post-author">by Falk Hoppe</span></p>
-              </header>
-              <h2 class="headline-sub post-tldr-headline">#tl;dr</h2>
-              <p class="post-tldr">tbd.</p>
-              <div class="markdown-container"><p>Recently some colleagues and I ended up in a discussion about frontend architecture in a distributed service environment. This post should sum up some of the thoughts that were mentioned there. Before we start, i first want to thank <a href="https://twitter.com/tillsc">@tillsc</a> and <a href="https://twitter.com/ewolff">@ewolff</a> for their enlightenments.</p>
-<p>If we talk about web applications sliced into smaller applications we often discuss problems like distributed storage or about the business scope of the targeted applications. But as a problem that got more attention lately I want to talk about the different solutions of how to provide frontend assets to a microservice or <a href="http://scs-architecture.org/">SCS</a> landscape.</p>
-<p>To make sure that this article is not another discussion about in how big or small slices a service should be broken up lets assume that we have a set of business scoped pillars, that each provide a view on a different scope of your business landscape.</p>
-<h3>uniformity</h3>
-<p>In such an environment, there are different requirements that emerge from our decision of slicing an app domain to multiple apps in favor of having a business monolith. While it is natural,  that your application has the same look and feel throughout your application in a monolith, it is a factor we have to care or in distributed apps. So <strong>uniformity</strong> is our first qualifier for a good distributed frontend architecture, because for many different reasons, it makes sense to provide a seamless user experience over all applications.</p>
-<h3>independence</h3>
-<p>One key requirement which we aim for, when deciding for a distributed application architecture is <strong>independency</strong> in development and deployment of our services. We want to have services to be releasable as often as we want, maybe a few times a day or even every few minutes. So while it is a good practice to provide a central UI Kit for building distributed frontends, so that it is easy to bring the look and feel into place, each application with a seperate UI should be able to release own assets into place if they have a need for them.</p>
-<p>As an example just think of a service pillar, that is responsibe for the representation of business analytics delivering a big pile of chart related assets and similar that is not needed anywhere else in our application set. There should be no reason not to release a  new version of that service pillar to production in case the updates are scoped to the chart libraries. In contrast to that, changes in the centralized UI kit, that is included in the service should not block any deployments of this service, if we want to speak about independence.</p>
-<h3>syncronicity</h3>
-<p>A management requirement, that is often sneaking in, in discussions about frontend architecture is that all service pillars should look the same all the time. It means that any changes in the centralized part of our UI should be in place immediatly after the changes are deployed. So the uniform look and feel of the application should be in <strong>sync</strong> all the time.</p>
-<h2>Pick 2 out of 3</h2>
-<p>If you are familiar with distributed application architecture or distributed storage you may have read something about <a href="http://www.cs.berkeley.edu/~brewer/">Eric Brewers</a> <a href="http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf">CAP</a> theorem. In short it tells us that you have to choose at most two properties out of Consistency, Availability and Partition Tolerance.</p>
-<p>As a disclaimer i don’t want to claim something likewise ingenious for myself, but i didn’t overcome that there seems to be similar pattern for <strong>independency</strong>, <strong>uniformity</strong> and <strong>syncronicity</strong> at distributed frontends.</p>
-
-              </div>
-              <footer class="post-footer">
-                <nav class="post-nav"> 
-                  <button title="information" class="open fa fa-info tooltip up"></button>
-                  <ul class="scroll-status"></ul>
-                  <button title="copy link" data-clipboard-target=".copy-link-text" class="clipboard tooltip up copy-link fa fa-link"></button>
-                  <div class="copy-link-tooltip">
-                    <button class="close-tooltip fa fa-close"></button><span class="copy-link-hint">copy</span>
-                    <input type="text" value="http://www.relentless-development.com/distributed-frontend-integration.html" class="copy-link-text"/>
-                  </div>
-                </nav>
-                <div class="post-footer-content">
-                  <h3 class="headline-sub">The realms of distributed frontend integration</h3><span class="post-date">2/29/2016</span> // <span class="post-category">frontend architecture</span>
-                </div>
-              </footer>
-            </article>
             <article id="pe-exception-immunity" class="post">
               <header><a href="/pe-exception-immunity.html">
                   <h1 class="headline-primary">Progressive Enhancement is no cure to JS exceptions</h1></a>
@@ -81,23 +41,33 @@
               <p class="post-tldr">Progressive Enhancement is not saving you from making errors, and your application may have major outages if you let them crawl into production, whether you want it to be true or not. Yes, SPAs have this problem, because they naturally rely heavily on JS, but so do modern progressively enhanced webapps.</p>
               <div class="markdown-container"><h2>Progressive Enhancement is not a cure to everything</h2>
 <p>Since Single Page Apps came up, there has been (for good and many reasons) a community discussing the disadvantages of SPAs and where they have failed.
-One big argument that is spread into each and every discussion about SPAs versus its older counterpart Progressive Enhancement is
-the <em>white-page</em> nightmare and that single javascript errors can kick your page in the groins. Once you search for <em>Progressive Enhancement vs. Single Page App</em> and <em>white page</em> and similar you will find a bunch of articles, that buy in into this argument, like <a href="https://www.leaseweb.com/labs/2013/07/10-very-good-reasons-to-stop-using-javascript/">here</a>, <a href="http://programmers.stackexchange.com/questions/237537/progressive-enhancement-vs-single-page-apps#comment546103_238021">here</a> or <a href="https://www.christianheilmann.com/2011/12/28/on-single-page-apps/">here</a>.
+At latest since the <a href="http://www.webmonkey.com/2011/02/gawker-learns-the-hard-way-why-hash-bang-urls-are-evil/">&quot;Gawker&quot;-incident</a> a few years ago a big argument that is spread into each and every discussion about SPAs versus its older counterpart Progressive Enhancement is the <em>white-page</em> nightmare and that single javascript errors can kick your page in the groins.</p>
+<p>Once you search for <em>Progressive Enhancement vs. Single Page App</em> and <em>white page</em> and similar you will find a bunch of articles, that buy in into this argument, like <a href="https://www.leaseweb.com/labs/2013/07/10-very-good-reasons-to-stop-using-javascript/">here</a>, <a href="http://programmers.stackexchange.com/questions/237537/progressive-enhancement-vs-single-page-apps#comment546103_238021">here</a> or <a href="https://www.christianheilmann.com/2011/12/28/on-single-page-apps/">here</a>.
 I only gave it a quick shot, but you may find several maybe better examples for what I mean.</p>
-<p>Recently I saw this again in an awesome <a href="https://www.smashingmagazine.com/2015/12/reimagining-single-page-applications-progressive-enhancement">article</a> about a clean and simple &quot;alternative&quot; for smaller pages, that want to have a SPA like behavior. In fact this blog uses some of these techniques, because I think it is really awesome and wanted to play with it (weather you like it or not 😋).</p>
+<p>Recently I saw this again in an awesome <a href="https://www.smashingmagazine.com/2015/12/reimagining-single-page-applications-progressive-enhancement">article</a> about a clean and simple &quot;alternative&quot; for smaller pages, that want to have a SPA like behavior. In fact this blog itself uses some of these techniques, because I think it is really awesome and wanted to play with it (weather you like it or not 😋).</p>
 <p>And while I love writing Web-Applications that rely on Progressive Enhancement, I gave Single Page Applications a chance too, and guess what? Both, SPAs and PE-Apps have the same problems about JavaScript exceptions. Handling exceptions is not an easy task, and yes you can f*ck it up in both worlds. While SPAs are often crashing totally, leaving us with a blank page, or having to do a big job in isomorphic content delivery, progressive enhanced apps may have a big problem too.</p>
-<p>Yes the &quot;blank page&quot; problem is a problem, but the SPA folks have solutions for that (most of the time I don't like them, but ok). If you are concerned about that, or want to have some examples on why PE does not suck in that place, maybe give a look at this <a href="http://sighjavascript.tumblr.com/">blog</a>.</p>
+<ul>
+<li>Yes the &quot;blank page&quot; problem is a major problem that i don't want to talk down, but the SPA folks have solutions for that (most of the time I don't like them, but ok). If you are concerned about that, or want to have some examples on why PE does not suck in that place, maybe you should give a look at this <a href="http://sighjavascript.tumblr.com/">blog</a>.</li>
+</ul>
 <p>In discussions about those architectural choices I often hear people referring to the invulnerability of progressive enhanced apps with something like:</p>
 <blockquote>
 <p>applications build in a right manner, just work with or without JS, so they are much better than SPAs</p>
 </blockquote>
 <p>While I think that this is true in a matter, that you can do a lot for a more robust, accessible and in general well designed application, I think that some people have missed a point here. PE is at some point a question of 'does my app work without JS', but for me the reason is not, that it will outlive severe script exceptions.</p>
-<p>If you have an application, that is enhanced with JavaScript, your application may become unusable if you make a severe error. By comparing the JS of SPAs and progressively enhanced applications you will find some lines in both code bases, that may cause the site to be not in a working state anymore, so that users can interact with it, without tearing their hair.</p>
-<p>An easy example is to sabotage a &quot;remote form&quot; script, that sends the data asynchronously to the server. It for sure catches all submits, maybe validates all fields in beforehand and so on. Maybe the same script also does something like <a href="https://github.com/defunkt/jquery-pjax">pjax</a> or <a href="https://github.com/rails/turbolinks">turbolinks</a> and asyncyfies your GET-links.</p>
-<p>If there is a bug, an error, or what else conundrum there is, it can blow up your page.</p>
-<h2>What is the cure?</h2>
-<p>If you ask me, what architecture would fit better, or what you should do, for me the answer is easy. <strong>testing</strong>, <strong>testing</strong>, <strong>testing</strong>! The time of script kiddies, wielding the <em>Staff of Power</em>, doing all the magic is so over right now. If you want to write an application, that should provide anything of value, it should have tests. The more people rely on your work, the more tests you should have.</p>
-<p>A maybe good argument for SPAs, that comes by from time to time is that they help to form a nice server API. In my opinion a progressive enhanced app is a good to go for writing robust web applications. The matter here is in fact, that usually you are enhancing your application step by step, and you have the choice to remove those enhancements if it just doesn't work out.</p>
+<p>If you have an application, that is enhanced with JavaScript, your application may become unusable if you make a severe error. By comparing the JS of SPAs and progressively enhanced applications you very probably will find some lines in both code bases, that may cause the site to be not in a working state anymore in case such an error happens. This means the user is left in a state where he not able to use the page in a reasonable manner any more. You may say, ok, but at least he can see the websites content still, but does that really matter anymore at that point? Your side has become a fancy and really expensive sheet of paper, just not that useful.</p>
+<p>An easy example would be to sabotage a &quot;remote form&quot; script that sends the data asynchronously to the server. It for sure catches all submits, maybe validates all fields in beforehand and so on. Maybe the same script also does something like <a href="https://github.com/defunkt/jquery-pjax">pjax</a> or <a href="https://github.com/rails/turbolinks">turbolinks</a> and asyncyfies your GET-links.</p>
+<p>If there is a bug, an error injected by js compression of your provide or what else conundrum there is, it will turn your site in a rather useless pile of crap.</p>
+<h2>So what's the cure?</h2>
+<p>Basically Progressive Enhancement may be able to give you a better shot to tackle those kind of problems. By starting out with a straight request/response web application, enhancing every feature in a <a href="http://responsivenews.co.uk/post/18948466399/cutting-the-mustard">cutting-the-mustard</a> manner you may be hardened against many problems, that still would hit you hard running the usual SPA frameworks. But i don't think that you are immune to described problems at this point.</p>
+<p>So, whats now? Give up and write JS-only apps? Yes, maybe, or at least you should think about a few things before start sprinkling your boring app with magical javascripty stardust.</p>
+<ul>
+<li><strong>is my functionality important or is it ok if it fails until i can deploy a proper bug fix?</strong></li>
+<li><strong>do i increase the value of the given function for the user?</strong></li>
+<li><strong>am i able to improve the User Experience in a different way?</strong></li>
+</ul>
+<p>If you</p>
+<p><strong>testing</strong>, <strong>testing</strong>, <strong>testing</strong>! The time of script kiddies, wielding the <em>Staff of Power</em>, doing all the magic is so over right now. If you want to write an application, that should provide anything of value, it should have tests. The more people rely on your work, the more tests you should have.</p>
+<p>A maybe good argument for SPAs, that comes by from time to time is that they help to form a nice server API. In my opinion there is no reason why you should not be able to do this with a PE app. The matter here is in fact, that usually you are enhancing your application step by step, and you have the choice to remove those enhancements if it just doesn't work out.</p>
 <p>So what happens if a JS exception made it to production and kills your remote form? If you have built it in a proper way try to just remove this functionality for a time and give your users the chance to use your app again. The user experience may be not the shiny golden star you have dreamed of, but your customers will have the chance to buy your product, use your service, and so on.</p>
 
               </div>
@@ -154,6 +124,6 @@ I only gave it a quick shot, but you may find several maybe better examples for 
     <script src="/assets/javascripts/clipboard-e6687772f8.js"></script>
     <script src="/assets/javascripts/hammer-797b76ee63.js"></script>
     <script src="/assets/javascripts/prism-503b810d8a.js"></script>
-    <script src="/assets/javascripts/main-7bfcccd863.js" async="true"></script>
+    <script src="/assets/javascripts/main-387ed4e6e2.js" async="true"></script>
   </body>
 </html>

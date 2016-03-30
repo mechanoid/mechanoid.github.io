@@ -88,8 +88,8 @@
 
     if (scrollTopWithOffset >= postStart && scrollTopWithOffset <= postEnd) {
       var scrollTarget = scrollTop < (postStart + viewPortOffset) ? postStart : postEnd - this.browserHeight ;
-      
-      this.post.parent().find('.post, .post-footer').removeClass('active');
+
+      this.post.parent().find('.post').removeClass('active');
       this.post.addClass('active');
 
       selectRootOnChildTargeting(this.post);
@@ -138,6 +138,15 @@
 
     return false;
   });
+
+
+
+
+
+
+
+
+
 
   var clipboard = new Clipboard('.clipboard');
   clipboard.resolveOptions({target: function(trigger) {
@@ -190,6 +199,18 @@
     $(e.target).closest('.copy-link-tooltip').removeClass('active');
   });
 
+
+
+
+
+
+
+
+
+
+
+
+
   var landingPage = $('.posts');
 
   if (landingPage.length > 0) {
@@ -202,6 +223,12 @@
     });
 
   }
+
+
+
+
+
+
 
   $('.nav-toggle, .nav-close').on('click', function(e) {
     e.preventDefault();

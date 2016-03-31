@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>relentless development</title>
     <link rel="stylesheet" href="/assets/styles/prism-6d14265e81.css"/>
-    <link rel="stylesheet" href="/assets/styles/main-03e3dcd53f.css"/>
+    <link rel="stylesheet" href="/assets/styles/main-fe6f2db3bc.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="alternate" href="http://www.relentless-development.com/" hreflang="x-default" />
     <link rel="alternate" href="http://www.relentless-development.com/" hreflang="en" />
     <script>
@@ -21,7 +21,7 @@
       <ul class="nav-list">
         <li class="nav-item fa fa-home"><a href="/" class="nav-link">Home</a></li>
         <li class="nav-item fa fa-star"><a href="/pe-exception-immunity.html" class="nav-link">Progressive Enhancement is no cure to JS exceptions</a>
-          <p class="post-nav-meta"><span class="post-date">2/28/2016</span> • <span class="post-category">frontend architecture</span></p>
+          <p class="post-nav-meta"><span class="post-date">3/31/2016</span> • <span class="post-category">frontend architecture</span></p>
         </li>
         <li class="nav-item fa fa-legal impressum"><a href="/impressum.html" class="nav-link">Impressum</a></li>
       </ul>
@@ -34,7 +34,7 @@
           <article id="pe-exception-immunity" class="post">
             <header><a href="/pe-exception-immunity.html">
                 <h1 class="headline-primary">Progressive Enhancement is no cure to JS exceptions</h1></a>
-              <p title="Progressive Enhancement is no cure to JS exceptions" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Feb 2016 Sunday</span><span class="post-author">by Falk Hoppe</span></p>
+              <p title="Progressive Enhancement is no cure to JS exceptions" class="post-meta"><span class="post-category">frontend architecture</span> • <span class="post-date">Mar 2016 Thursday</span><span class="post-author">by Falk Hoppe</span></p>
             </header>
             <h2 class="headline-sub post-tldr-headline">#tl;dr</h2>
             <p class="post-tldr">Progressive Enhancement is not saving you from making errors, and your application may have major outages if you let them crawl into production, whether you want it to be true or not. Yes, SPAs have this problem, because they naturally rely heavily on JS, but so do modern progressively enhanced webapps.</p>
@@ -46,14 +46,14 @@ I only gave it a quick shot, but you may find several maybe better examples for 
 <p>Recently I saw this again in an awesome <a href="https://www.smashingmagazine.com/2015/12/reimagining-single-page-applications-progressive-enhancement">article</a> about a clean and simple &quot;alternative&quot; for smaller pages, that want to have a SPA like behavior. In fact this blog itself uses some of these techniques, because I think it is really awesome and wanted to play with it (weather you like it or not 😋).</p>
 <p>And while I love writing Web-Applications that rely on Progressive Enhancement, I gave Single Page Applications a chance too, and guess what? Both, SPAs and PE-Apps have the same problems about JavaScript exceptions. Handling exceptions is not an easy task, and yes you can f*ck it up in both worlds. While SPAs are often crashing totally, leaving us with a blank page, or having to do a big job in isomorphic content delivery, progressive enhanced apps may have a big problem too.</p>
 <ul>
-<li>Yes the &quot;blank page&quot; problem is a major problem that i don't want to talk down, but the SPA folks have solutions for that (most of the time I don't like them, but ok). If you are concerned about that, or want to have some examples on why PE does not suck in that place, maybe you should give a look at this <a href="http://sighjavascript.tumblr.com/">blog</a>.</li>
+<li>Yes the &quot;blank page&quot; problem is a major problem that i don't want to talk down, but the SPA folks have solutions for that (most of the time I don't like them, but ok). In case you are concerned about that, or want to have some examples on why PE does not suck in that place, maybe you should give a look at this <a href="http://sighjavascript.tumblr.com/">blog</a>.</li>
 </ul>
 <p>In discussions about those architectural choices I often hear people referring to the invulnerability of progressive enhanced apps with something like:</p>
 <blockquote>
 <p>applications build in a right manner, just work with or without JS, so they are much better than SPAs</p>
 </blockquote>
 <p>While I think that this is true in a matter, that you can do a lot for a more robust, accessible and in general well designed application, I think that some people have missed a point here. PE is at some point a question of 'does my app work without JS', but for me the reason is not, that it will outlive severe script exceptions.</p>
-<p>If you have an application, that is enhanced with JavaScript, your application may become unusable if you make a severe error. By comparing the JS of SPAs and progressively enhanced applications you very probably will find some lines in both code bases, that may cause the site to be not in a working state anymore in case such an error happens. This means the user is left in a state where he not able to use the page in a reasonable manner any more. You may say, ok, but at least he can see the websites content still, but does that really matter anymore at that point? Your side has become a fancy and really expensive sheet of paper, just not that useful.</p>
+<p>If you have an application, that is enhanced with JavaScript, your application may become unusable by suffering from a severe exception. By comparing the JS of SPAs and progressively enhanced applications you very probably will find some lines in both code bases, that may cause the site to be not in a working state anymore in case such an error happens. This means the user is left in a state where he not able to use the page in a reasonable manner any more. You may say, ok, but at least he can see the websites content still, but does that really matter anymore at that point? Your side has become a fancy and really expensive sheet of paper, just not that useful.</p>
 <p>An easy example would be to sabotage a &quot;remote form&quot; script that sends the data asynchronously to the server. It for sure catches all submits, maybe validates all fields in beforehand and so on. Maybe the same script also does something like <a href="https://github.com/defunkt/jquery-pjax">pjax</a> or <a href="https://github.com/rails/turbolinks">turbolinks</a> and asyncyfies your GET-links.</p>
 <p>If there is a bug, an error injected by js compression of your provide or what else conundrum there is, it will turn your site in a rather useless pile of crap.</p>
 <h2>So what's the cure?</h2>
@@ -64,10 +64,9 @@ I only gave it a quick shot, but you may find several maybe better examples for 
 <li><strong>do i increase the value of the given function for the user?</strong></li>
 <li><strong>am i able to improve the User Experience in a different way?</strong></li>
 </ul>
-<p>If you</p>
-<p><strong>testing</strong>, <strong>testing</strong>, <strong>testing</strong>! The time of script kiddies, wielding the <em>Staff of Power</em>, doing all the magic is so over right now. If you want to write an application, that should provide anything of value, it should have tests. The more people rely on your work, the more tests you should have.</p>
-<p>A maybe good argument for SPAs, that comes by from time to time is that they help to form a nice server API. In my opinion there is no reason why you should not be able to do this with a PE app. The matter here is in fact, that usually you are enhancing your application step by step, and you have the choice to remove those enhancements if it just doesn't work out.</p>
-<p>So what happens if a JS exception made it to production and kills your remote form? If you have built it in a proper way try to just remove this functionality for a time and give your users the chance to use your app again. The user experience may be not the shiny golden star you have dreamed of, but your customers will have the chance to buy your product, use your service, and so on.</p>
+<p>If you have already thought about such questions i think you should walk the path of bringing in JS. Finally it is the combination of HTML, CSS and also JS that lets people create awesome web experiences. Ok and so what? What can we do to avoid or minimize the impact of this kind of big bang exceptions.</p>
+<p>First point is easy, <strong>testing</strong>, <strong>testing</strong>, <strong>testing</strong>! The time of script kiddies, wielding the <em>Staff of Power</em>, doing all the magic is so over right now. If you want to write an application, that should provide anything of value, it should have tests. The more people rely on your work, the more tests you should have. This for sure is both true for SPA applications and progressively enhanced applications.</p>
+<p>A maybe good argument for SPAs, that comes by from time to time is that they help to form a nice server API. In my opinion there is no reason why you should not be able to do this with a PE app. The matter here is in fact and a good argument for PE apps is that usually you are enhancing your application step by step, and you have the choice to remove those enhancements if it just doesn't work out. So what happens if a JS exception made it to production and kills your remote form? If you have built it in a proper way try to just remove this functionality for a time and give your users the chance to use your app again. The user experience may be not the shiny golden star you have dreamed of, but your customers will have the chance to buy your product, use your service, and so on.</p>
 
             </div>
             <div id="disqus_thread"></div>
@@ -96,7 +95,7 @@ I only gave it a quick shot, but you may find several maybe better examples for 
                 </div>
               </nav>
               <div class="post-footer-content">
-                <h3 class="headline-sub">Progressive Enhancement is no cure to JS exceptions</h3><span class="post-date">2/28/2016</span> // <span class="post-category">frontend architecture</span>
+                <h3 class="headline-sub">Progressive Enhancement is no cure to JS exceptions</h3><span class="post-date">3/31/2016</span> // <span class="post-category">frontend architecture</span>
               </div>
             </footer>
           </article>
